@@ -1,0 +1,111 @@
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body, html, #root {
+  margin: 0;
+  padding:0;
+  width: 100%;
+  height: 100vh;
+  font-family: Inter, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+
+h1, h2{
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+h3, h4, h5, h6, p, a, pre{
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+
+h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+  font-weight: 700;
+  color: #333;
+}
+h2 {
+  font-size: 2.25rem;
+  line-height: 1.15;
+  font-weight: 600;
+  color: #333;
+}
+h3 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+  font-weight: 500;
+  color: #333;
+}
+h4 {
+  font-size: 1.25rem;
+  line-height: 1.3;
+  font-weight: 500;
+  color: #333;
+}
+h5 {
+  font-size: 1rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #333;
+}
+h6 {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #333;
+}
+p, a {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #333;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+pre{
+  font-size: 1.1rem;
+  line-height: 1.7;
+  padding: 0px;
+  margin: 0px;
+}
+
+
+
+.glass {
+  position: relative;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(2px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2), 
+              inset 0 4px 20px rgba(255, 255, 255, 0.3);
+}
+
+.glass::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2rem;
+  backdrop-filter: blur(1px);
+  box-shadow: inset -10px -8px 0px -11px rgba(255, 255, 255, 1),
+              inset 0px -9px 0px -8px rgba(255, 255, 255, 1);
+  opacity: 0.9;
+  z-index: -1;
+  filter: blur(1px) drop-shadow(10px 4px 6px white) brightness(115%);
+}
