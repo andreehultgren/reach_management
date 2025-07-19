@@ -3,7 +3,7 @@ import { styled } from 'styled-components'
 
 import Navbar from './components/Navbar'
 import { COLORS } from './constants'
-import Footer from './components/Footer'
+// import Footer from './components/Footer'
 import { Pages } from './pages';
 
 const AppWrapper = styled.div`
@@ -27,7 +27,7 @@ function App() {
   const PASSWORD = "kungandree"; // Change this to your desired password
 
   // Only enable password protection if running on a hosted environment (not localhost)
-  const isHosted = typeof window !== 'undefined' && !window.location.hostname.match(/^localhost|^127\.|^192\.168|^0\.0\.0\.0/);
+  const isHosted = false; //typeof window !== 'undefined' && !window.location.hostname.match(/^localhost|^127\.|^192\.168|^0\.0\.0\.0/);
 
   if (isHosted && !authenticated) {
     return (
@@ -65,7 +65,7 @@ function App() {
       <Suspense fallback={<p>Loading</p>}>
         {CurrentPage.Component}
       </Suspense>
-      <Footer/>
+      {/* <Footer/> */}
     </AppWrapper>
   )
 }

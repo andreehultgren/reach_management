@@ -4,12 +4,13 @@ import {COLORS, CompanyName} from '../constants'
 import {Menu} from "@mui/icons-material"
 import Logo from '../Logo';
 import { Pages } from '../pages';
-import CallToAction from './CallToAction';
+import ContactUs from './ContactUs';
 
 const NavBarContainer = styled.nav`
   flex:1;
   position: fixed;
   top: 0;
+  z-index:100;
   display: flex;
   justify-content: center;
   left: 0;
@@ -89,21 +90,17 @@ const NavLink = styled.a`
   padding: 0.25rem 1rem;
   border-radius: 1rem;
   width: fit-content;
-  font-size: .875rem;
+  font-size: 1.1rem;
   font-weight:500;
   line-height: 1.5;
   transition: background 0.2s;
   text-transform: capitalize;
 
   @media (max-width: 768px) {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     display: block;
     box-sizing: border-box;
-    color: white;
-    background: rgba(0, 91, 150, 0.9);
-    &:hover {
-     background: rgba(0, 163, 224, 0.9);
-    }
+    color: ${COLORS.textPrimary};
   }
 `;
 
@@ -114,6 +111,8 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const contactUsRef = useRef<HTMLButtonElement>(null);
+  const popupRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -135,7 +134,11 @@ export default function Navbar() {
   useEffect(() => {
     if (!open) return;
     function handleClickOutside(event: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      const insideMenu = menuRef.current?.contains(target);
+      const insideContactUs = contactUsRef.current?.contains(target);
+      const insidePopup = popupRef.current?.contains(target);
+      if (!insideMenu && !insideContactUs && !insidePopup) {
         setOpen(false);
       }
     }
@@ -163,24 +166,19 @@ export default function Navbar() {
                 {page.name}
               </NavLink>
             ))}
-            <CallToAction onClick={() => setOpen(false)}>
-              Contact me
-            </CallToAction>
+            <ContactUs ref={contactUsRef} popupRef={popupRef}/>
           </NavLinkContainer>
         </NavBarHead>
         {open && (<NavBarBody>
           {Pages.map(page => (
             <NavLink key={page.path}
-
+              style={{width: '100%', textAlign: 'center'}}
               href={page.path}
-              onClick={() => setOpen(false)}
             >
               {page.name}
             </NavLink>
           ))}
-          <CallToAction onClick={() => setOpen(false)}>
-            Contact me
-          </CallToAction>
+          <ContactUs ref={contactUsRef} popupRef={popupRef}/>
         </NavBarBody>)}
         
       </NavBar>

@@ -7,4 +7,4 @@ export const COLORS = {
   logoColorTwo: "#00A3E0",
 }
 
-export const CompanyName = "Lorem Ipsum";
+export const CompanyName = "Planova";
