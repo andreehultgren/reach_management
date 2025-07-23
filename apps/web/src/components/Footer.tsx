@@ -34,7 +34,7 @@ export default function FooterPage() {
       <Divider />
       <FooterText>Org.nr: 556677-8899</FooterText>
       <Divider />
-      <FooterText><a href="mailto:info@michaelab.se" style={{color: 'inherit'}}>info@michaelab.se</a></FooterText>
+      <FooterText><a href="mailto:info@planova.se" style={{color: 'inherit'}}>info@planova.se</a></FooterText>
     </FooterContainer>
   );
 }
