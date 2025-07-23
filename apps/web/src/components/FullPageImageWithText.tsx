@@ -12,7 +12,7 @@ const Container = styled.div`
   height: 100svh;
   width: 100%;
   box-sizing: border-box;
-  padding: 4rem;
+  padding: 2rem;
   @media (max-width: 900px) {
     flex-direction: column;
     align-items: center;

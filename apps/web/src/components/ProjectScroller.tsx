@@ -6,6 +6,8 @@ export default styled.div`
   overflow-x: auto;
   gap: 16px;
   padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   scrollbar-width: thin;
   scrollbar-color: #fff #fff;
   &::-webkit-scrollbar {

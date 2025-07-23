@@ -1,9 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { Typography } from "@mui/material";
 
 interface ProjectProps {
-  title: string;
-  description: string;
-  image: string;
+	title: string;
+	description: string;
+	image: string;
 }
 
 const Card = styled.div`
@@ -29,25 +30,14 @@ const ProjectContent = styled.div`
   padding: 1rem;
 `;
 
-const ProjectTitle = styled.h3`
-  margin: 0 0 0.5rem 0;
-  font-size: 1.2rem;
-`;
-
-const ProjectDescription = styled.p`
-  margin: 0;
-  color: #444;
-  font-size: 1rem;
-`;
-
 export default function Project({ title, description, image }: ProjectProps) {
-  return (
-    <Card>
-      <ProjectImage src={image} alt={title} />
-      <ProjectContent>
-        <ProjectTitle>{title}</ProjectTitle>
-        <ProjectDescription>{description}</ProjectDescription>
-      </ProjectContent>
-    </Card>
-  );
+	return (
+		<Card>
+			<ProjectImage src={image} alt={title} />
+			<ProjectContent>
+				<Typography variant="h3">{title}</Typography>
+				<Typography variant="body1">{description}</Typography>
+			</ProjectContent>
+		</Card>
+	);
 }

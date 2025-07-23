@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
-import styled from 'styled-components'
-import {COLORS, CompanyName} from '../constants'
-import {Menu} from "@mui/icons-material"
-import Logo from '../Logo';
-import ContactUs from './ContactUs';
-import { Link } from '@tanstack/react-router';
+import { useState, useEffect, useRef } from "react";
+import styled from "styled-components";
+import { COLORS, CompanyName } from "../constants";
+import { Menu } from "@mui/icons-material";
+import Logo from "../Logo";
+import ContactUs from "./ContactUs";
+import { Link } from "@tanstack/react-router";
+import { Typography } from "@mui/material";
 
 const NavBarContainer = styled.nav`
   flex:1;
@@ -15,7 +16,7 @@ const NavBarContainer = styled.nav`
   justify-content: center;
   left: 0;
   width: 100vw;
-`
+`;
 
 const NavBar = styled.div`
   display: flex;
@@ -49,7 +50,6 @@ const NavBarBody = styled.div`
   width:100%;
   padding: 0.5rem 1rem;
 `;
-
 
 const LogoLink = styled.a`
   text-decoration: none;
@@ -104,84 +104,73 @@ const NavLink = styled(Link)`
   }
 `;
 
-
-
-
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const contactUsRef = useRef<HTMLButtonElement>(null);
-  const popupRef = useRef<HTMLDivElement>(null);
+	const [open, setOpen] = useState(false);
+	const [scrolled, setScrolled] = useState(false);
+	const menuRef = useRef<HTMLDivElement>(null);
+	const contactUsRef = useRef<HTMLButtonElement>(null);
+	const popupRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 768) setOpen(false);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth > 768) setOpen(false);
+		};
+		handleResize();
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
 
-  useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 0);
-    };
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+	useEffect(() => {
+		const onScroll = () => {
+			setScrolled(window.scrollY > 0);
+		};
+		window.addEventListener("scroll", onScroll);
+		return () => window.removeEventListener("scroll", onScroll);
+	}, []);
 
-  useEffect(() => {
-    if (!open) return;
-    function handleClickOutside(event: MouseEvent) {
-      const target = event.target as Node;
-      const insideMenu = menuRef.current?.contains(target);
-      const insideContactUs = contactUsRef.current?.contains(target);
-      const insidePopup = popupRef.current?.contains(target);
-      if (!insideMenu && !insideContactUs && !insidePopup) {
-        setOpen(false);
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [open]);
+	useEffect(() => {
+		if (!open) return;
+		function handleClickOutside(event: MouseEvent) {
+			const target = event.target as Node;
+			const insideMenu = menuRef.current?.contains(target);
+			const insideContactUs = contactUsRef.current?.contains(target);
+			const insidePopup = popupRef.current?.contains(target);
+			if (!insideMenu && !insideContactUs && !insidePopup) {
+				setOpen(false);
+			}
+		}
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => document.removeEventListener("mousedown", handleClickOutside);
+	}, [open]);
 
-  return (
-    <NavBarContainer>
-      
-      <NavBar className={(scrolled || open) ? 'glass' : ''}>
-        <NavBarHead >
-          <LogoLink href="/">
-            <Logo size={18} name={CompanyName}/>
-          </LogoLink>
-          <MenuContainer ref={menuRef}>
-            <Menu onClick={() => setOpen(o => !o)}/>
-          </MenuContainer>
-          <NavLinkContainer>
-            <NavLink 
-              to="/"
-              onClick={() => setOpen(false)}
-            >
-              Home
-            </NavLink>
-          
-            <ContactUs ref={contactUsRef} popupRef={popupRef}/>
-          </NavLinkContainer>
-        </NavBarHead>
-        {open && (<NavBarBody>
-        
-          <NavLink 
-            style={{width: '100%', textAlign: 'center'}}
-            to="/"
-          >
-            Home
-          </NavLink>
-        
-          <ContactUs ref={contactUsRef} popupRef={popupRef}/>
-        </NavBarBody>)}
-        
-      </NavBar>
-      
-    </NavBarContainer>
-  )
+	return (
+		<NavBarContainer>
+			<NavBar className={scrolled || open ? "glass" : ""}>
+				<NavBarHead>
+					<LogoLink href="/">
+						<Logo size={18} name={CompanyName} />
+					</LogoLink>
+					<MenuContainer ref={menuRef}>
+						<Menu onClick={() => setOpen((o) => !o)} />
+					</MenuContainer>
+					<NavLinkContainer>
+						<NavLink to="/" onClick={() => setOpen(false)}>
+							<Typography sx={{ m: 0 }}>Home</Typography>
+						</NavLink>
+
+						<ContactUs ref={contactUsRef} popupRef={popupRef} />
+					</NavLinkContainer>
+				</NavBarHead>
+				{open && (
+					<NavBarBody>
+						<NavLink style={{ width: "100%", textAlign: "center" }} to="/">
+							<Typography sx={{ m: 0 }}>Home</Typography>
+						</NavLink>
+
+						<ContactUs ref={contactUsRef} popupRef={popupRef} />
+					</NavBarBody>
+				)}
+			</NavBar>
+		</NavBarContainer>
+	);
 }
