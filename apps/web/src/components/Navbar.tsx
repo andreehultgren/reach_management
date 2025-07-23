@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import {COLORS, CompanyName} from '../constants'
 import {Menu} from "@mui/icons-material"
 import Logo from '../Logo';
-import { Pages } from '../pages';
 import ContactUs from './ContactUs';
+import { Link } from '@tanstack/react-router';
 
 const NavBarContainer = styled.nav`
   flex:1;
@@ -84,7 +84,7 @@ const MenuContainer = styled.div`
     }
   }
 `;
-const NavLink = styled.a`
+const NavLink = styled(Link)`
   text-decoration: none;
   transition: color 0.2s;
   padding: 0.25rem 1rem;
@@ -158,26 +158,25 @@ export default function Navbar() {
             <Menu onClick={() => setOpen(o => !o)}/>
           </MenuContainer>
           <NavLinkContainer>
-            {Pages.map(page => (
-              <NavLink key={page.path}
-                href={page.path}
-                onClick={() => setOpen(false)}
-              >
-                {page.name}
-              </NavLink>
-            ))}
+            <NavLink 
+              to="/"
+              onClick={() => setOpen(false)}
+            >
+              Home
+            </NavLink>
+          
             <ContactUs ref={contactUsRef} popupRef={popupRef}/>
           </NavLinkContainer>
         </NavBarHead>
         {open && (<NavBarBody>
-          {Pages.map(page => (
-            <NavLink key={page.path}
-              style={{width: '100%', textAlign: 'center'}}
-              href={page.path}
-            >
-              {page.name}
-            </NavLink>
-          ))}
+        
+          <NavLink 
+            style={{width: '100%', textAlign: 'center'}}
+            to="/"
+          >
+            Home
+          </NavLink>
+        
           <ContactUs ref={contactUsRef} popupRef={popupRef}/>
         </NavBarBody>)}
         
