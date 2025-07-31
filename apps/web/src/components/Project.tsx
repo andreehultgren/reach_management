@@ -8,8 +8,7 @@ interface ProjectProps {
 }
 
 const Card = styled.div`
-  min-width: 280px;
-  max-width: 320px;
+  width: 360px;
   background: #fff;
   border-radius: 1rem;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
@@ -33,7 +32,11 @@ const ProjectContent = styled.div`
 export default function Project({ title, description, image }: ProjectProps) {
 	return (
 		<Card>
-			<ProjectImage src={image} alt={title} />
+			<ProjectImage
+				src={image}
+				alt={title}
+				style={{ aspectRatio: "16 / 9", height: "auto", objectPosition: "top" }}
+			/>
 			<ProjectContent>
 				<Typography variant="h3">{title}</Typography>
 				<Typography variant="body1">{description}</Typography>

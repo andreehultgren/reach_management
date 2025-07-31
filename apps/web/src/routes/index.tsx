@@ -10,6 +10,9 @@ import ProjectScroller from "../components/ProjectScroller";
 import Project from "../components/Project";
 import { Typography, Stack } from "@mui/material";
 
+const ACTIVATE_ISO = false;
+const ACTIVATE_PROJECTS = false;
+
 export const Route = createFileRoute("/")({
 	component: LandingPage,
 });
@@ -61,56 +64,110 @@ export default function LandingPage() {
 						},
 					}}
 				>
-					<Typography textAlign="center" variant="h1" ml={{ xs: 2, sm: 1 }}>
-						Tydliga leveranser{" "}
-						<span style={{ whiteSpace: "nowrap" }}>utan fluff</span>
+					<Typography
+						textAlign="center"
+						variant="h1"
+						ml={{ xs: 2, sm: 1 }}
+						mb={1}
+					>
+						Byggbara visioner
+					</Typography>
+					<Typography textAlign="center" variant="h5" mt={0}>
+						Vi förvandlar idéer till hållbara byggprojekt med ert mål i fokus.
 					</Typography>
 				</Container>
 			</FullPageImageWithText>
-			<Section $backgroundColor="#ededed" $padding="2rem 0">
+			{ACTIVATE_PROJECTS && (
+				<Section $backgroundColor="#ededed" $padding="2rem 0">
+					<Container>
+						<Stack paddingX={"1rem"} mb={2}>
+							<Typography variant="h2">Våra projekt</Typography>
+							<Typography variant="body1">
+								Kolla gärna in tidigare byggprojekt, renoveringar och
+								fastighetsutveckling som Planova har genomfört. Varje projekt är
+								unikt och visar vår kompetens inom byggledning,
+								kvalitetskontroll och hållbara lösningar.
+							</Typography>
+						</Stack>
+					</Container>
+					<ProjectScroller>
+						<Project
+							title="Projekt kommer snart"
+							description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
+							image="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=400&q=80"
+						/>
+						<Project
+							title="Projekt kommer snart"
+							description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
+							image="https://images.unsplash.com/photo-1494145904049-0dca59b4bbad?auto=format&fit=crop&w=400&q=80"
+						/>
+						<Project
+							title="Projekt kommer snart"
+							description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
+							image="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?auto=format&fit=crop&w=400&q=80"
+						/>
+						<Project
+							title="Projekt kommer snart"
+							description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
+							image="https://images.unsplash.com/photo-1491900177661-4e1cd2d7cce2?auto=format&fit=crop&w=400&q=80"
+						/>
+						<Project
+							title="Projekt kommer snart"
+							description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
+							image="https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?auto=format&fit=crop&w=400&q=80"
+						/>
+						<Project
+							title="Projekt kommer snart"
+							description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
+							image="https://images.unsplash.com/photo-1464146072230-91cabc968266?auto=format&fit=crop&w=400&q=80"
+						/>
+					</ProjectScroller>
+				</Section>
+			)}
+			<Section $backgroundColor="#ededed">
 				<Container>
-					<Stack paddingX={"1rem"} mb={2}>
-						<Typography variant="h2">Våra projekt</Typography>
+					<Stack marginLeft={{ xs: 0, sm: 1 }}>
+						<Typography variant="h2">Våra konsulter</Typography>
 						<Typography variant="body1">
-							Kolla gärna in tidigare byggprojekt, renoveringar och
-							fastighetsutveckling som Planova har genomfört. Varje projekt är
-							unikt och visar vår kompetens inom byggledning, kvalitetskontroll
-							och hållbara lösningar.
+							Vi är ett team av erfarna byggkonsulter som specialiserar oss på
+							byggledning, projektledning och kvalitetskontroll. Vårt mål är att
+							säkerställa att ditt byggprojekt genomförs effektivt, inom budget
+							och med högsta kvalitet.
+						</Typography>
+					</Stack>
+					<ProjectScroller>
+						<Project
+							title="Michael Hultgren"
+							description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
+							image="/michael_square.png"
+						/>
+					</ProjectScroller>
+				</Container>
+			</Section>
+			<Section $backgroundColor="#ffffff">
+				<Container>
+					<Stack marginLeft={{ xs: 0, sm: 1 }}>
+						<Typography variant="h2">Planering och Innovation</Typography>
+						<Typography variant="body1">
+							Vi tror på att kombinera traditionell byggkompetens med moderna
+							teknologier och metoder. Vårt fokus ligger på att skapa hållbara
+							lösningar som möter dagens krav och framtidens utmaningar.
 						</Typography>
 					</Stack>
 				</Container>
-				<ProjectScroller>
-					<Project
-						title="Projekt kommer snart"
-						description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
-						image="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=400&q=80"
-					/>
-					<Project
-						title="Projekt kommer snart"
-						description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
-						image="https://images.unsplash.com/photo-1494145904049-0dca59b4bbad?auto=format&fit=crop&w=400&q=80"
-					/>
-					<Project
-						title="Projekt kommer snart"
-						description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
-						image="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?auto=format&fit=crop&w=400&q=80"
-					/>
-					<Project
-						title="Projekt kommer snart"
-						description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
-						image="https://images.unsplash.com/photo-1491900177661-4e1cd2d7cce2?auto=format&fit=crop&w=400&q=80"
-					/>
-					<Project
-						title="Projekt kommer snart"
-						description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
-						image="https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?auto=format&fit=crop&w=400&q=80"
-					/>
-					<Project
-						title="Projekt kommer snart"
-						description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
-						image="https://images.unsplash.com/photo-1464146072230-91cabc968266?auto=format&fit=crop&w=400&q=80"
-					/>
-				</ProjectScroller>
+			</Section>
+			<Section $backgroundColor="#ededed">
+				<Container>
+					<Stack marginLeft={{ xs: 0, sm: 1 }}>
+						<Typography variant="h2">Rak på sak</Typography>
+						<Typography variant="body1">
+							Vi kommer att hålla dig informerad och involverad genom hela
+							projektet. Vår transparenta kommunikation och tydliga processer
+							säkerställer att du alltid vet vad som händer och kan lita på att
+							ditt projekt är i goda händer.
+						</Typography>
+					</Stack>
+				</Container>
 			</Section>
 			<Section $backgroundColor="#ffffff">
 				<Container>
@@ -146,19 +203,21 @@ export default function LandingPage() {
 								</Typography>
 							</Stack>
 						</Stack>
-						<Stack direction="row" spacing={2} mt={2} maxWidth={800}>
-							<Stack flex={1}>
-								<Typography variant="h3">ISO 9001</Typography>
-								<Typography variant="body1">
-									Vi är certifierade enligt ISO 9001, vilket innebär att vi
-									följer internationella standarder för kvalitetsledning och
-									ständiga förbättringar.
-								</Typography>
+						{ACTIVATE_ISO && (
+							<Stack direction="row" spacing={2} mt={2} maxWidth={800}>
+								<Stack flex={1}>
+									<Typography variant="h3">ISO 9001</Typography>
+									<Typography variant="body1">
+										Vi är certifierade enligt ISO 9001, vilket innebär att vi
+										följer internationella standarder för kvalitetsledning och
+										ständiga förbättringar.
+									</Typography>
+								</Stack>
+								<Stack flex={1} alignItems="center" justifyContent="center">
+									<img src="/ISO9001.png" alt="ISO 9001" height={100} />
+								</Stack>
 							</Stack>
-							<Stack flex={1} alignItems="center" justifyContent="center">
-								<img src="/ISO9001.png" alt="ISO 9001" height={100} />
-							</Stack>
-						</Stack>
+						)}
 					</Stack>
 				</Container>
 			</Section>
