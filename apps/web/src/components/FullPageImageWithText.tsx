@@ -1,15 +1,14 @@
-
-import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import styled from "styled-components";
+import { useEffect, useState } from "react";
 
 const TRANSPARENCY = 0.69;
 
-const Container = styled.div`
+const Container = styled.div<{ $height?: number }>`
   position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 100svh;
+  height: ${({ $height }) => ($height ? `${$height}px` : "100svh")};
   width: 100%;
   box-sizing: border-box;
   padding: 2rem;
@@ -19,7 +18,6 @@ const Container = styled.div`
     padding: 1rem;
   }
 `;
-
 
 const BackgroundFilter = styled.div<{ $transparency?: number }>`
   position: absolute;
@@ -59,39 +57,43 @@ const BackgroundImage = styled.div`
   }
 `;
 
-const Content = styled.div`
+const Content = styled.div<{ $height?: number }>`
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 100svh;
+  height: ${({ $height }) => ($height ? `${$height}px` : "100svh")};
   width: 100%;
 `;
 
-
-interface IProps{
-  imageUrl: string;
-  children?: React.ReactNode;
+interface IProps {
+	imageUrl: string;
+	children?: React.ReactNode;
+	height?: number;
 }
 
-export default function FullPageImageWithText({ imageUrl, children }: IProps) {
-  const [loaded, setLoaded] = useState(false);
-  useEffect(() => {
-    const img = new Image();
-    img.src = imageUrl;
-    img.onload = () => setLoaded(true);
-  }, [imageUrl]);
+export default function FullPageImageWithText({
+	imageUrl,
+	children,
+	height,
+}: IProps) {
+	const [loaded, setLoaded] = useState(false);
+	useEffect(() => {
+		const img = new Image();
+		img.src = imageUrl;
+		img.onload = () => setLoaded(true);
+	}, [imageUrl]);
 
-  return (
-    <Container data-testid="landing-page-container">
-      <BackgroundFilter $transparency={loaded ? TRANSPARENCY : 0.2}>
-        <BackgroundImage />
-      </BackgroundFilter>
-      <Content data-testid="landing-page-content">
-        {children}
-      </Content>
-    </Container>
-  );
+	return (
+		<Container data-testid="landing-page-container" $height={height}>
+			<BackgroundFilter $transparency={loaded ? TRANSPARENCY : 0.2}>
+				<BackgroundImage />
+			</BackgroundFilter>
+			<Content data-testid="landing-page-content" $height={height}>
+				{children}
+			</Content>
+		</Container>
+	);
 }

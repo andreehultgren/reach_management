@@ -1,10 +1,14 @@
 import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { CopyAll } from "@mui/icons-material";
 
-export default function Email() {
+interface IProps {
+	ignoreTitle?: boolean;
+}
+
+export default function Email({ ignoreTitle }: IProps) {
 	return (
 		<Stack spacing={2}>
-			<Typography variant="h4">E-post</Typography>
+			{!ignoreTitle && <Typography variant="h4">E-post</Typography>}
 			<Typography>
 				Skicka ett mail till oss, så återkommer vi så snart vi kan!
 			</Typography>

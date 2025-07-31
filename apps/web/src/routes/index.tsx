@@ -138,34 +138,104 @@ export default function LandingPage() {
 					<ProjectScroller>
 						<Project
 							title="Michael Hultgren"
-							description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
-							image="/michael_square.png"
+							description="Byggprojektledare med över 10 års erfarenhet inom byggbranschen. Specialiserad på hållbara bygglösningar och effektiv projektledning."
+							image="/michael.jpg"
 						/>
 					</ProjectScroller>
 				</Container>
 			</Section>
 			<Section $backgroundColor="#ffffff">
 				<Container>
-					<Stack marginLeft={{ xs: 0, sm: 1 }}>
-						<Typography variant="h2">Planering och Innovation</Typography>
-						<Typography variant="body1">
-							Vi tror på att kombinera traditionell byggkompetens med moderna
-							teknologier och metoder. Vårt fokus ligger på att skapa hållbara
-							lösningar som möter dagens krav och framtidens utmaningar.
-						</Typography>
+					<Stack
+						direction={{ xs: "column", md: "row" }}
+						spacing={4}
+						alignItems="center"
+					>
+						<Box
+							flex={1}
+							sx={{
+								width: "100%",
+								maxHeight: 500,
+								maxWidth: 600,
+								aspectRatio: "16 / 9",
+								overflow: "hidden",
+								alignSelf: { xs: "center", md: "flex-start" },
+								borderRadius: "1rem",
+								boxShadow: "0 2px 12px rgba(0,0,0,0.8)",
+							}}
+						>
+							<img
+								src="/wip.jpg"
+								alt="Work in Progress"
+								width="100%"
+								style={{ maxHeight: 500, objectFit: "cover", width: "100%" }}
+							/>
+						</Box>
+						<Stack flex={1} marginLeft={{ xs: 0, sm: 1 }}>
+							<Typography variant="h2">Planering och Innovation</Typography>
+							<Typography variant="body1">
+								Vi tror på att kombinera traditionell byggkompetens med moderna
+								teknologier och metoder. Vårt fokus ligger på att skapa hållbara
+								lösningar som möter dagens krav och framtidens utmaningar.
+							</Typography>
+							<Typography variant="body1">
+								Av denna anledning håller vi på att utveckla framtidens metoder
+								för projektledning. Vi vill effektivisera byggprocessen genom
+								att använda digitala verktyg och innovativa metoder som
+								underlättar samarbetet mellan alla inblandade parter.
+							</Typography>
+						</Stack>
 					</Stack>
 				</Container>
 			</Section>
 			<Section $backgroundColor="#ededed">
 				<Container>
 					<Stack marginLeft={{ xs: 0, sm: 1 }}>
-						<Typography variant="h2">Rak på sak</Typography>
-						<Typography variant="body1">
-							Vi kommer att hålla dig informerad och involverad genom hela
-							projektet. Vår transparenta kommunikation och tydliga processer
-							säkerställer att du alltid vet vad som händer och kan lita på att
-							ditt projekt är i goda händer.
-						</Typography>
+						<Stack
+							direction={{ xs: "column", md: "row" }}
+							spacing={4}
+							alignItems="center"
+						>
+							<Stack flex={1}>
+								<Typography variant="h2">Rak på sak</Typography>
+								<Typography variant="body1" mb={2}>
+									Precis som titanic skulle klarat sig bättre om den hade
+									träffat isberget rakt på, så är vi övertygade om att rak
+									kommunikation och tydliga mål är avgörande för framgången i
+									alla byggprojekt.
+								</Typography>
+								<Typography variant="body1">
+									Vi kommer att vara raka och tydliga i vår kommunikation, så
+									att du alltid vet vad som händer i ditt projekt. Inga
+									överraskningar, bara klara besked och en rak väg framåt.
+								</Typography>
+							</Stack>
+							<Box
+								flex={1}
+								sx={{
+									width: "100%",
+									maxHeight: 600,
+									maxWidth: 600,
+									aspectRatio: "16 / 9",
+									overflow: "hidden",
+									alignSelf: { xs: "center", md: "flex-start" },
+									borderRadius: "1rem",
+									boxShadow: "0 2px 12px rgba(0,0,0,0.8)",
+								}}
+							>
+								<img
+									src="/titanic.jpg"
+									alt="Titanic"
+									style={{
+										width: "100%",
+										height: "100%",
+										objectFit: "cover",
+										aspectRatio: "16 / 9",
+										display: "block",
+									}}
+								/>
+							</Box>
+						</Stack>
 					</Stack>
 				</Container>
 			</Section>

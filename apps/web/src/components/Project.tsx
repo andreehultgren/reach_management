@@ -35,7 +35,11 @@ export default function Project({ title, description, image }: ProjectProps) {
 			<ProjectImage
 				src={image}
 				alt={title}
-				style={{ aspectRatio: "16 / 9", height: "auto", objectPosition: "top" }}
+				style={{
+					aspectRatio: "4 / 3",
+					height: "auto",
+					objectPosition: "center",
+				}}
 			/>
 			<ProjectContent>
 				<Typography variant="h3">{title}</Typography>

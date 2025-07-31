@@ -110,6 +110,7 @@ export default function Navbar() {
 	const menuRef = useRef<HTMLDivElement>(null);
 	const contactUsRef = useRef<HTMLButtonElement>(null);
 	const popupRef = useRef<HTMLDivElement>(null);
+	const bodyRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -135,7 +136,8 @@ export default function Navbar() {
 			const insideMenu = menuRef.current?.contains(target);
 			const insideContactUs = contactUsRef.current?.contains(target);
 			const insidePopup = popupRef.current?.contains(target);
-			if (!insideMenu && !insideContactUs && !insidePopup) {
+			const insideBody = bodyRef.current?.contains(target);
+			if (!insideMenu && !insideContactUs && !insidePopup && !insideBody) {
 				setOpen(false);
 			}
 		}
@@ -155,16 +157,29 @@ export default function Navbar() {
 					</MenuContainer>
 					<NavLinkContainer>
 						<NavLink to="/" onClick={() => setOpen(false)}>
-							<Typography sx={{ m: 0 }}>Home</Typography>
+							<Typography sx={{ m: 0 }}>Hem</Typography>
 						</NavLink>
-
+						<NavLink to="/jobba-har" onClick={() => setOpen(false)}>
+							<Typography sx={{ m: 0 }}>Jobba här</Typography>
+						</NavLink>
 						<ContactUs ref={contactUsRef} popupRef={popupRef} />
 					</NavLinkContainer>
 				</NavBarHead>
 				{open && (
-					<NavBarBody>
-						<NavLink style={{ width: "100%", textAlign: "center" }} to="/">
-							<Typography sx={{ m: 0 }}>Home</Typography>
+					<NavBarBody ref={bodyRef}>
+						<NavLink
+							style={{ width: "100%", textAlign: "center" }}
+							to="/"
+							onClick={() => setOpen(false)}
+						>
+							<Typography sx={{ m: 0 }}>Hem</Typography>
+						</NavLink>
+						<NavLink
+							style={{ width: "100%", textAlign: "center" }}
+							to="/jobba-har"
+							onClick={() => setOpen(false)}
+						>
+							<Typography sx={{ m: 0 }}>Jobba här</Typography>
 						</NavLink>
 
 						<ContactUs ref={contactUsRef} popupRef={popupRef} />
