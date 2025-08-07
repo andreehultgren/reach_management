@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as OmOssRouteImport } from './routes/om-oss'
 import { Route as JobbaHarRouteImport } from './routes/jobba-har'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const OmOssRoute = OmOssRouteImport.update({
+  id: '/om-oss',
+  path: '/om-oss',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const JobbaHarRoute = JobbaHarRouteImport.update({
   id: '/jobba-har',
   path: '/jobba-har',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/jobba-har': typeof JobbaHarRoute
+  '/om-oss': typeof OmOssRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/jobba-har': typeof JobbaHarRoute
+  '/om-oss': typeof OmOssRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/jobba-har': typeof JobbaHarRoute
+  '/om-oss': typeof OmOssRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/jobba-har'
+  fullPaths: '/' | '/about' | '/jobba-har' | '/om-oss'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/jobba-har'
-  id: '__root__' | '/' | '/about' | '/jobba-har'
+  to: '/' | '/about' | '/jobba-har' | '/om-oss'
+  id: '__root__' | '/' | '/about' | '/jobba-har' | '/om-oss'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   JobbaHarRoute: typeof JobbaHarRoute
+  OmOssRoute: typeof OmOssRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/om-oss': {
+      id: '/om-oss'
+      path: '/om-oss'
+      fullPath: '/om-oss'
+      preLoaderRoute: typeof OmOssRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/jobba-har': {
       id: '/jobba-har'
       path: '/jobba-har'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   JobbaHarRoute: JobbaHarRoute,
+  OmOssRoute: OmOssRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

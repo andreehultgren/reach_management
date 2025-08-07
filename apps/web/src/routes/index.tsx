@@ -124,26 +124,6 @@ export default function LandingPage() {
 					</ProjectScroller>
 				</Section>
 			)}
-			<Section $backgroundColor="#ededed">
-				<Container>
-					<Stack marginLeft={{ xs: 0, sm: 1 }}>
-						<Typography variant="h2">Våra konsulter</Typography>
-						<Typography variant="body1">
-							Vi är ett team av erfarna byggkonsulter som specialiserar oss på
-							byggledning, projektledning och kvalitetskontroll. Vårt mål är att
-							säkerställa att ditt byggprojekt genomförs effektivt, inom budget
-							och med högsta kvalitet.
-						</Typography>
-					</Stack>
-					<ProjectScroller>
-						<Project
-							title="Michael Hultgren"
-							description="Byggprojektledare med över 10 års erfarenhet inom byggbranschen. Specialiserad på hållbara bygglösningar och effektiv projektledning."
-							image="/michael.jpg"
-						/>
-					</ProjectScroller>
-				</Container>
-			</Section>
 			<Section $backgroundColor="#ffffff">
 				<Container>
 					<Stack
@@ -292,6 +272,26 @@ export default function LandingPage() {
 				</Container>
 			</Section>
 			<Section $backgroundColor="#ededed">
+				<Container>
+					<Stack marginLeft={{ xs: 0, sm: 1 }}>
+						<Typography variant="h2">Våra konsulter</Typography>
+						<Typography variant="body1">
+							Vi är ett team av erfarna byggkonsulter som specialiserar oss på
+							byggledning, projektledning och kvalitetskontroll. Vårt mål är att
+							säkerställa att ditt byggprojekt genomförs effektivt, inom budget
+							och med högsta kvalitet.
+						</Typography>
+					</Stack>
+					<ProjectScroller>
+						<Project
+							title="Michael Hultgren"
+							description="Byggprojektledare med över 10 års erfarenhet inom byggbranschen. Specialiserad på hållbara bygglösningar och effektiv projektledning."
+							image="/michael.jpg"
+						/>
+					</ProjectScroller>
+				</Container>
+			</Section>
+			<Section $backgroundColor="#ffffff">
 				<Container>
 					<Stack marginLeft={{ xs: 0, sm: 1 }}>
 						<Typography variant="h2">Kontakt</Typography>

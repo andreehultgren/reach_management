@@ -104,6 +104,12 @@ const NavLink = styled(Link)`
   }
 `;
 
+const links = [
+	{ to: "/", label: "Hem" },
+	{ to: "/jobba-har", label: "Jobba här" },
+	{ to: "/om-oss", label: "Om oss" },
+];
+
 export default function Navbar() {
 	const [open, setOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
@@ -156,32 +162,30 @@ export default function Navbar() {
 						<Menu onClick={() => setOpen((o) => !o)} />
 					</MenuContainer>
 					<NavLinkContainer>
-						<NavLink to="/" onClick={() => setOpen(false)}>
-							<Typography sx={{ m: 0 }}>Hem</Typography>
-						</NavLink>
-						<NavLink to="/jobba-har" onClick={() => setOpen(false)}>
-							<Typography sx={{ m: 0 }}>Jobba här</Typography>
-						</NavLink>
+						{links.map((link) => (
+							<NavLink
+								key={link.to}
+								to={link.to}
+								onClick={() => setOpen(false)}
+							>
+								<Typography sx={{ m: 0 }}>{link.label}</Typography>
+							</NavLink>
+						))}
 						<ContactUs ref={contactUsRef} popupRef={popupRef} />
 					</NavLinkContainer>
 				</NavBarHead>
 				{open && (
 					<NavBarBody ref={bodyRef}>
-						<NavLink
-							style={{ width: "100%", textAlign: "center" }}
-							to="/"
-							onClick={() => setOpen(false)}
-						>
-							<Typography sx={{ m: 0 }}>Hem</Typography>
-						</NavLink>
-						<NavLink
-							style={{ width: "100%", textAlign: "center" }}
-							to="/jobba-har"
-							onClick={() => setOpen(false)}
-						>
-							<Typography sx={{ m: 0 }}>Jobba här</Typography>
-						</NavLink>
-
+						{links.map((link) => (
+							<NavLink
+								style={{ width: "100%", textAlign: "center" }}
+								key={link.to}
+								to={link.to}
+								onClick={() => setOpen(false)}
+							>
+								<Typography sx={{ m: 0 }}>{link.label}</Typography>
+							</NavLink>
+						))}
 						<ContactUs ref={contactUsRef} popupRef={popupRef} />
 					</NavBarBody>
 				)}
