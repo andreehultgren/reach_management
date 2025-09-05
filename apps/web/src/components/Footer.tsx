@@ -28,11 +28,14 @@ export default function FooterPage() {
 				}}
 				divider={<Divider />}
 			>
-				<Typography variant="body2">© 2025 Planova AB</Typography>
+				<Typography variant="body2">© 2025 Reach Management AB</Typography>
 				<Typography variant="body2">Org.nr: 556677-8899</Typography>
 				<Typography variant="body2">
-					<a href="mailto:info@planova.se" style={{ color: "inherit" }}>
-						info@planova.se
+					<a
+						href="mailto:michael.hultgren@reachmanagement.se"
+						style={{ color: "inherit" }}
+					>
+						michael.hultgren@reachmanagement.se
 					</a>
 				</Typography>
 			</Stack>

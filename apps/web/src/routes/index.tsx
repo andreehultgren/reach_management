@@ -1,31 +1,31 @@
 import { createFileRoute } from "@tanstack/react-router";
-import FullPageImageWithText from "../components/FullPageImageWithText";
-import Section from "../components/Section";
-import { Tabs, Tab, Box, Container, Divider, Paper } from "@mui/material";
+import {
+	Container,
+	Typography,
+	Stack,
+	Box,
+	Tabs,
+	Tab,
+	Paper,
+	Divider,
+	Button,
+} from "@mui/material";
 import { useState } from "react";
 import Email from "../components/ContactUs/Email";
 import Calendly from "../components/ContactUs/Calendly";
 import Social from "../components/ContactUs/Social";
 import ProjectScroller from "../components/ProjectScroller";
 import Project from "../components/Project";
-import { Typography, Stack } from "@mui/material";
+import { COLORS } from "../constants";
 
 const ACTIVATE_ISO = false;
-const ACTIVATE_PROJECTS = false;
 
 export const Route = createFileRoute("/")({
 	component: LandingPage,
 });
 
-interface TabPanelProps {
-	children?: React.ReactNode;
-	index: number;
-	value: number;
-}
-
-function TabPanel(props: TabPanelProps) {
+function TabPanel(props) {
 	const { children, value, index, ...other } = props;
-
 	return (
 		<Paper
 			role="tabpanel"
@@ -33,13 +33,14 @@ function TabPanel(props: TabPanelProps) {
 			id={`vertical-tabpanel-${index}`}
 			aria-labelledby={`vertical-tab-${index}`}
 			{...other}
+			sx={{ p: 3 }}
 		>
-			{value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+			{value === index && <Box>{children}</Box>}
 		</Paper>
 	);
 }
 
-function a11yProps(index: number) {
+function a11yProps(index) {
 	return {
 		id: `vertical-tab-${index}`,
 		"aria-controls": `vertical-tabpanel-${index}`,
@@ -49,82 +50,46 @@ function a11yProps(index: number) {
 export default function LandingPage() {
 	const [value, setValue] = useState(0);
 
-	const handleChange = (_: React.SyntheticEvent, newValue: number) => {
+	const handleChange = (_, newValue) => {
 		setValue(newValue);
 	};
+
 	return (
 		<div>
-			<FullPageImageWithText imageUrl="/stockholm.jpg">
-				<Container
-					sx={{
-						alignSelf: "flex-end",
-						pb: {
-							xs: 0,
-							sm: 5,
-						},
-					}}
-				>
-					<Typography
-						textAlign="center"
-						variant="h1"
-						ml={{ xs: 2, sm: 1 }}
-						mb={1}
-					>
-						Byggbara visioner
-					</Typography>
-					<Typography textAlign="center" variant="h5" mt={0}>
-						Vi förvandlar idéer till hållbara byggprojekt med ert mål i fokus.
-					</Typography>
-				</Container>
-			</FullPageImageWithText>
-			{ACTIVATE_PROJECTS && (
-				<Section $backgroundColor="#ededed" $padding="2rem 0">
-					<Container>
-						<Stack paddingX={"1rem"} mb={2}>
-							<Typography variant="h2">Våra projekt</Typography>
-							<Typography variant="body1">
-								Kolla gärna in tidigare byggprojekt, renoveringar och
-								fastighetsutveckling som Planova har genomfört. Varje projekt är
-								unikt och visar vår kompetens inom byggledning,
-								kvalitetskontroll och hållbara lösningar.
+			{/* Hero Section */}
+			<Box
+				sx={{
+					height: "100vh",
+					background: `linear-gradient(${COLORS.LandingOverlay}, ${COLORS.LandingOverlay}), url(/stockholm.jpg) no-repeat center/cover`,
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "center",
+					textAlign: "center",
+				}}
+			>
+				<Container sx={{ height: "100%" }}>
+					<Stack height="100%">
+						<Box flex={2} />
+						<Stack flex={1}>
+							<Typography
+								variant="h1"
+								sx={{ mb: 2, fontWeight: 700, color: COLORS.landingColor }}
+							>
+								Vi når längre tillsammans
+							</Typography>
+							<Typography
+								variant="h5"
+								sx={{ maxWidth: 600, mx: "auto", color: COLORS.landingColor }}
+							>
+								För framgångsrika bygg- och fastighetsprojekt
 							</Typography>
 						</Stack>
-					</Container>
-					<ProjectScroller>
-						<Project
-							title="Projekt kommer snart"
-							description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
-							image="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=400&q=80"
-						/>
-						<Project
-							title="Projekt kommer snart"
-							description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
-							image="https://images.unsplash.com/photo-1494145904049-0dca59b4bbad?auto=format&fit=crop&w=400&q=80"
-						/>
-						<Project
-							title="Projekt kommer snart"
-							description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
-							image="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?auto=format&fit=crop&w=400&q=80"
-						/>
-						<Project
-							title="Projekt kommer snart"
-							description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
-							image="https://images.unsplash.com/photo-1491900177661-4e1cd2d7cce2?auto=format&fit=crop&w=400&q=80"
-						/>
-						<Project
-							title="Projekt kommer snart"
-							description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
-							image="https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?auto=format&fit=crop&w=400&q=80"
-						/>
-						<Project
-							title="Projekt kommer snart"
-							description="Vi arbetar på att lägga till våra projekt här. Titta gärna tillbaka senare!"
-							image="https://images.unsplash.com/photo-1464146072230-91cabc968266?auto=format&fit=crop&w=400&q=80"
-						/>
-					</ProjectScroller>
-				</Section>
-			)}
-			<Section $backgroundColor="#ffffff">
+					</Stack>
+				</Container>
+			</Box>
+
+			{/* About Section */}
+			<Box sx={{ py: 8, backgroundColor: "#ffffff" }}>
 				<Container>
 					<Stack
 						direction={{ xs: "column", md: "row" }}
@@ -132,156 +97,194 @@ export default function LandingPage() {
 						alignItems="center"
 					>
 						<Box
-							flex={1}
 							sx={{
-								width: "100%",
-								maxHeight: 500,
+								flex: 1,
 								maxWidth: 600,
-								aspectRatio: "16 / 9",
-								overflow: "hidden",
-								alignSelf: { xs: "center", md: "flex-start" },
 								borderRadius: "1rem",
-								boxShadow: "0 2px 12px rgba(0,0,0,0.8)",
+								overflow: "hidden",
+								boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
 							}}
 						>
 							<img
 								src="/wip.jpg"
 								alt="Work in Progress"
-								width="100%"
-								style={{ maxHeight: 500, objectFit: "cover", width: "100%" }}
+								style={{ width: "100%", height: "auto", objectFit: "cover" }}
 							/>
 						</Box>
-						<Stack flex={1} marginLeft={{ xs: 0, sm: 1 }}>
-							<Typography variant="h2">Planering och Innovation</Typography>
+						<Stack flex={1} spacing={2}>
+							<Typography variant="h2">Om Reach Management</Typography>
 							<Typography variant="body1">
-								Vi tror på att kombinera traditionell byggkompetens med moderna
-								teknologier och metoder. Vårt fokus ligger på att skapa hållbara
-								lösningar som möter dagens krav och framtidens utmaningar.
+								Reach Management är ett konsultföretag inom bygg- och
+								fastighetsbranschen. Vi är din partner genom hela byggprocessen
+								– från idé till färdigställd produkt. Med engagemang, struktur
+								och innovation driver vi projekt som skapar långsiktigt värde.
 							</Typography>
 							<Typography variant="body1">
-								Av denna anledning håller vi på att utveckla framtidens metoder
-								för projektledning. Vi vill effektivisera byggprocessen genom
-								att använda digitala verktyg och innovativa metoder som
-								underlättar samarbetet mellan alla inblandade parter.
+								Vårt namn symboliserar vår filosofi: <strong>Reach</strong> står
+								för att sträcka sig bortom det förväntade, och{" "}
+								<strong>Management</strong> representerar vår expertis inom
+								projektledning och samordning. Tillsammans når vi längre.
 							</Typography>
 						</Stack>
 					</Stack>
 				</Container>
-			</Section>
-			<Section $backgroundColor="#ededed">
+			</Box>
+
+			{/* Services Section */}
+			<Box sx={{ py: 8, backgroundColor: "#f5f5f5" }}>
 				<Container>
-					<Stack marginLeft={{ xs: 0, sm: 1 }}>
-						<Stack
-							direction={{ xs: "column", md: "row" }}
-							spacing={4}
-							alignItems="center"
+					<Typography variant="h2" textAlign="center" sx={{ mb: 4 }}>
+						Våra tjänster
+					</Typography>
+					<Stack direction={{ xs: "column", md: "row" }} spacing={4}>
+						<Box sx={{ flex: 1, p: 2 }}>
+							<Typography variant="h4">Projektledning</Typography>
+							<Typography variant="body1">
+								Vi leder projekt med fokus på struktur, kommunikation och
+								resultat. Från planering till uppföljning säkerställer vi att
+								ditt projekt levereras i tid och inom budget.
+							</Typography>
+						</Box>
+						<Box sx={{ flex: 1, p: 2 }}>
+							<Typography variant="h4">Projekteringsledning</Typography>
+							<Typography variant="body1">
+								Vi samordnar projekteringsarbetet för att säkerställa kvalitet
+								och effektivitet, från koncept till byggstart, med kunden i
+								centrum.
+							</Typography>
+						</Box>
+						<Box sx={{ flex: 1, p: 2 }}>
+							<Typography variant="h4">Byggledning</Typography>
+							<Typography variant="body1">
+								På plats leder vi entreprenörerna och övervakar tidplan, ekonomi
+								och säkerhet för att säkerställa ett framgångsrikt projekt.
+							</Typography>
+						</Box>
+						<Box sx={{ flex: 1, p: 2 }}>
+							<Typography variant="h4">Kontrollansvarig (KA)</Typography>
+							<Typography variant="body1">
+								Som certifierade kontrollansvariga enligt PBL säkerställer vi
+								att lagkrav följs och att projektet godkänns av byggnadsnämnden.
+							</Typography>
+						</Box>
+					</Stack>
+				</Container>
+			</Box>
+
+			{/* Why Choose Us Section */}
+			<Box sx={{ py: 8, backgroundColor: "#ffffff" }}>
+				<Container>
+					<Stack
+						direction={{ xs: "column", md: "row" }}
+						spacing={4}
+						alignItems="center"
+					>
+						<Stack flex={1} spacing={2}>
+							<Typography variant="h2">Därför Reach Management</Typography>
+							<Typography variant="body1">
+								Hos oss får du en partner som tar ansvar för helheten. Vi
+								utmanar, inspirerar och driver projekt med ärlighet, struktur
+								och innovation. Vår styrka ligger i att förstå din vision och
+								omsätta den i verklighet.
+							</Typography>
+							<Typography variant="body1">
+								<strong>Våra principer:</strong>
+								<br />• Ärlighet – Vi löser problem, vi döljer dem inte.
+								<br />• Struktur – Vi håller vad vi lovar.
+								<br />• Innovation – Vi hittar lösningar där andra ser hinder.
+								<br />• Kundfokus – Din framgång är vårt mål.
+							</Typography>
+						</Stack>
+						<Box
+							sx={{
+								flex: 1,
+								maxWidth: 600,
+								borderRadius: "1rem",
+								overflow: "hidden",
+								boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
+							}}
 						>
-							<Stack flex={1}>
-								<Typography variant="h2">Rak på sak</Typography>
-								<Typography variant="body1" mb={2}>
-									Precis som titanic skulle klarat sig bättre om den hade
-									träffat isberget rakt på, så är vi övertygade om att rak
-									kommunikation och tydliga mål är avgörande för framgången i
-									alla byggprojekt.
-								</Typography>
-								<Typography variant="body1">
-									Vi kommer att vara raka och tydliga i vår kommunikation, så
-									att du alltid vet vad som händer i ditt projekt. Inga
-									överraskningar, bara klara besked och en rak väg framåt.
-								</Typography>
-							</Stack>
+							<img
+								src="/titanic.jpg"
+								alt="Titanic"
+								style={{ width: "100%", height: "auto", objectFit: "cover" }}
+							/>
+						</Box>
+					</Stack>
+				</Container>
+			</Box>
+
+			{/* Certifications Section */}
+			<Box sx={{ py: 8, backgroundColor: "#f5f5f5" }}>
+				<Container>
+					<Typography variant="h2" textAlign="center" sx={{ mb: 4 }}>
+						Certifieringar
+					</Typography>
+					<Stack
+						direction={{ xs: "column", md: "row" }}
+						spacing={4}
+						justifyContent="center"
+					>
+						<Stack direction="row" spacing={2} maxWidth={600}>
 							<Box
-								flex={1}
 								sx={{
-									width: "100%",
-									maxHeight: 600,
-									maxWidth: 600,
-									aspectRatio: "16 / 9",
-									overflow: "hidden",
-									alignSelf: { xs: "center", md: "flex-start" },
-									borderRadius: "1rem",
-									boxShadow: "0 2px 12px rgba(0,0,0,0.8)",
+									flex: 1,
+									display: "flex",
+									alignItems: "center",
+									justifyContent: "center",
 								}}
 							>
 								<img
-									src="/titanic.jpg"
-									alt="Titanic"
-									style={{
-										width: "100%",
-										height: "100%",
-										objectFit: "cover",
-										aspectRatio: "16 / 9",
-										display: "block",
-									}}
+									src="/rise.png"
+									alt="Rise"
+									style={{ maxHeight: 100, objectFit: "contain" }}
 								/>
 							</Box>
-						</Stack>
-					</Stack>
-				</Container>
-			</Section>
-			<Section $backgroundColor="#ffffff">
-				<Container>
-					<Stack marginLeft={{ xs: 0, sm: 1 }}>
-						<Typography variant="h2">Certifieringar</Typography>
-						<Typography variant="body1">
-							Vi är certifierade kontrollansvariga enligt Plan- och bygglagen
-							(PBL) och har ISO 9001-certifiering för kvalitetsledning. Våra
-							certifieringar visar att vi uppfyller lagkrav och
-							branschstandarder inom bygg och renovering, med fokus på kvalitet,
-							säkerhet och resultat.
-						</Typography>
-					</Stack>
-					<Divider sx={{ mt: 2, mb: 4 }} />
-					<Stack
-						marginLeft={{ xs: 0, sm: 1 }}
-						alignItems="center"
-						justifyContent="center"
-						spacing={3}
-					>
-						<Stack direction="row" spacing={2} mt={2} maxWidth={800}>
-							<Stack flex={1} alignItems="center" justifyContent="center">
-								<img src="/rise.png" alt="Rise" height={100} />
-							</Stack>
 							<Stack flex={1}>
-								<Typography variant="h3">
-									Kontrollansvarig enligt PGL
+								<Typography variant="h4">
+									Kontrollansvarig enligt PBL
 								</Typography>
 								<Typography variant="body1">
-									Vi är certifierade kontrollansvariga enligt Plan- och
-									bygglagen (PBL) och kan hjälpa dig med alla aspekter av
-									byggprocessen.
+									Vi är certifierade enligt Plan- och bygglagen (PBL) och
+									säkerställer att ditt projekt uppfyller alla lagkrav.
 								</Typography>
 							</Stack>
 						</Stack>
 						{ACTIVATE_ISO && (
-							<Stack direction="row" spacing={2} mt={2} maxWidth={800}>
+							<Stack direction="row" spacing={2} maxWidth={600}>
 								<Stack flex={1}>
-									<Typography variant="h3">ISO 9001</Typography>
+									<Typography variant="h4">ISO 9001</Typography>
 									<Typography variant="body1">
-										Vi är certifierade enligt ISO 9001, vilket innebär att vi
-										följer internationella standarder för kvalitetsledning och
-										ständiga förbättringar.
+										Vår ISO 9001-certifiering garanterar kvalitetsledning och
+										ständiga förbättringar i alla våra processer.
 									</Typography>
 								</Stack>
-								<Stack flex={1} alignItems="center" justifyContent="center">
-									<img src="/ISO9001.png" alt="ISO 9001" height={100} />
-								</Stack>
+								<Box
+									sx={{
+										flex: 1,
+										display: "flex",
+										alignItems: "center",
+										justifyContent: "center",
+									}}
+								>
+									<img
+										src="/ISO9001.png"
+										alt="ISO 9001"
+										style={{ maxHeight: 100, objectFit: "contain" }}
+									/>
+								</Box>
 							</Stack>
 						)}
 					</Stack>
 				</Container>
-			</Section>
-			<Section $backgroundColor="#ededed">
+			</Box>
+
+			{/* Consultants Section */}
+			<Box sx={{ py: 8, backgroundColor: "#ffffff" }}>
 				<Container>
-					<Stack marginLeft={{ xs: 0, sm: 1 }}>
-						<Typography variant="h2">Våra konsulter</Typography>
-						<Typography variant="body1">
-							Vi är ett team av erfarna byggkonsulter som specialiserar oss på
-							byggledning, projektledning och kvalitetskontroll. Vårt mål är att
-							säkerställa att ditt byggprojekt genomförs effektivt, inom budget
-							och med högsta kvalitet.
-						</Typography>
-					</Stack>
+					<Typography variant="h2" textAlign="center" sx={{ mb: 4 }}>
+						Våra konsulter
+					</Typography>
 					<ProjectScroller>
 						<Project
 							title="Michael Hultgren"
@@ -290,35 +293,38 @@ export default function LandingPage() {
 						/>
 					</ProjectScroller>
 				</Container>
-			</Section>
-			<Section $backgroundColor="#ffffff">
+			</Box>
+
+			{/* Contact Section */}
+			<Box id="contact" sx={{ py: 8, backgroundColor: "#f5f5f5" }}>
 				<Container>
-					<Stack marginLeft={{ xs: 0, sm: 1 }}>
-						<Typography variant="h2">Kontakt</Typography>
-						<Typography variant="body1">
-							Vi finns här om du har några frågor! Kontakta oss gärna om du vill
-							veta mer om våra tjänster eller har funderingar kring ditt
-							projekt. Vi svarar snabbt och hjälper dig gärna vidare!
-						</Typography>
-					</Stack>
-					<Stack>
-						<Tabs value={value} onChange={handleChange}>
-							<Tab label="Email" {...a11yProps(0)} />
-							<Tab label="Möte" {...a11yProps(1)} />
-							<Tab label="Social" {...a11yProps(2)} />
-						</Tabs>
-						<TabPanel value={value} index={0}>
-							<Email />
-						</TabPanel>
-						<TabPanel value={value} index={1}>
-							<Calendly />
-						</TabPanel>
-						<TabPanel value={value} index={2}>
-							<Social />
-						</TabPanel>
-					</Stack>
+					<Typography variant="h2" textAlign="center" sx={{ mb: 4 }}>
+						Kontakta oss
+					</Typography>
+					<Typography
+						variant="body1"
+						textAlign="center"
+						sx={{ mb: 4, maxWidth: 600, mx: "auto" }}
+					>
+						Har du frågor eller vill diskutera ditt nästa projekt? Vi finns här
+						för att hjälpa dig vidare. Välj hur du vill nå oss!
+					</Typography>
+					<Tabs value={value} onChange={handleChange} centered>
+						<Tab label="E-post" {...a11yProps(0)} />
+						<Tab label="Boka möte" {...a11yProps(1)} />
+						<Tab label="Sociala medier" {...a11yProps(2)} />
+					</Tabs>
+					<TabPanel value={value} index={0}>
+						<Email />
+					</TabPanel>
+					<TabPanel value={value} index={1}>
+						<Calendly />
+					</TabPanel>
+					<TabPanel value={value} index={2}>
+						<Social />
+					</TabPanel>
 				</Container>
-			</Section>
+			</Box>
 		</div>
 	);
 }

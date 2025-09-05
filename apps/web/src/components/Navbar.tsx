@@ -20,6 +20,7 @@ const NavBarContainer = styled.nav`
 
 const NavBar = styled.div`
   display: flex;
+	color: ${COLORS.landingColor};
   flex-direction: column;
   flex:1;
   align-items: center;
@@ -76,7 +77,7 @@ const MenuContainer = styled.div`
   @media (max-width: 768px) {
     display: block;
     cursor: pointer;
-    color: #333;
+    color: ${COLORS.landingColor};
     font-size: 1.5rem;
     transition: color 0.2s;
     &:hover {
@@ -100,13 +101,14 @@ const NavLink = styled(Link)`
     font-size: 1.1rem;
     display: block;
     box-sizing: border-box;
-    color: ${COLORS.textPrimary};
+    color: ${COLORS.landingColor};
   }
 `;
 
 const links = [
 	{ to: "/", label: "Hem" },
-	{ to: "/jobba-har", label: "Jobba här" },
+	{ to: "/tjanster", label: "Tjänster" },
+	{ to: "/jobba-hos-oss", label: "Jobb" },
 	{ to: "/om-oss", label: "Om oss" },
 ];
 

@@ -11,13 +11,12 @@ import DialogContent from "@mui/material/DialogContent";
 import Slide from "@mui/material/Slide";
 import type { TransitionProps } from "@mui/material/transitions";
 import Tabs from "@mui/material/Tabs";
-import Social from "./Social";
-import Calendly from "./Calendly";
 import Email from "./Email";
+import Phone from "./Phone";
 
 const StyledContact = styled.button`
   background: ${COLORS.logoColorTwo};
-  color: #fff;
+  color: #404040;
   border: none;
   cursor: pointer;
   padding: 0.5rem 1.5rem;
@@ -90,7 +89,7 @@ const ContactUs = React.forwardRef<HTMLButtonElement, ContactUsProps>(
 		return (
 			<>
 				<StyledContact ref={ref} onClick={() => setOpen(true)}>
-					Kontakta oss
+					Kontakt
 				</StyledContact>
 				<Dialog
 					open={open}
@@ -107,18 +106,34 @@ const ContactUs = React.forwardRef<HTMLButtonElement, ContactUsProps>(
 							onChange={handleChange}
 							aria-label="basic tabs example"
 						>
-							<Tab label="Email" {...a11yProps(0)} />
-							<Tab label="Möte" {...a11yProps(1)} />
-							<Tab label="Social" {...a11yProps(2)} />
+							<Tab label="Telefon" {...a11yProps(0)} />
+							<Tab label="Email" {...a11yProps(1)} />
+							{/* <Tab label="Möte" {...a11yProps(2)} />
+							<Tab label="Social" {...a11yProps(3)} /> */}
 						</Tabs>
 					</Box>
 					<CustomTabPanel value={value} index={0}>
+						<DialogContent>
+							<Phone />
+							<DialogActions sx={{ marginTop: 1 }}>
+								<Button
+									onClick={() => {
+										window.location.href = "tel:+46701081022";
+									}}
+								>
+									Ring oss
+								</Button>
+							</DialogActions>
+						</DialogContent>
+					</CustomTabPanel>
+					<CustomTabPanel value={value} index={1}>
 						<DialogContent>
 							<Email />
 							<DialogActions sx={{ marginTop: 1 }}>
 								<Button
 									onClick={() => {
-										window.location.href = "mailto:info@planova.se";
+										window.location.href =
+											"mailto:michael.hultgren@reachmanagement.se";
 									}}
 								>
 									Skicka Email
@@ -127,18 +142,18 @@ const ContactUs = React.forwardRef<HTMLButtonElement, ContactUsProps>(
 						</DialogContent>
 					</CustomTabPanel>
 
-					<CustomTabPanel value={value} index={1}>
+					{/* <CustomTabPanel value={value} index={2}>
 						<DialogContent>
 							<DialogActions>
 								<Calendly />
 							</DialogActions>
 						</DialogContent>
 					</CustomTabPanel>
-					<CustomTabPanel value={value} index={2}>
+					<CustomTabPanel value={value} index={3}>
 						<DialogContent>
 							<Social />
 						</DialogContent>
-					</CustomTabPanel>
+					</CustomTabPanel> */}
 				</Dialog>
 			</>
 		);

@@ -11,7 +11,7 @@ const AppWrapper = styled.div`
   flex-direction: column;
   background: ${COLORS.background};
   color-scheme: light dark;
-  color: #333333;
+  color: ${COLORS.textPrimary};
 `;
 
 import { createTheme } from "@mui/material/styles";

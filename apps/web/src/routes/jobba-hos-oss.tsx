@@ -4,8 +4,9 @@ import Section from "../components/Section";
 import { Container } from "@mui/material";
 import Email from "../components/ContactUs/Email";
 import { Typography, Stack } from "@mui/material";
+import Phone from "../components/ContactUs/Phone";
 
-export const Route = createFileRoute("/jobba-har")({
+export const Route = createFileRoute("/jobba-hos-oss")({
 	component: LandingPage,
 });
 
@@ -28,23 +29,30 @@ export default function LandingPage() {
 						ml={{ xs: 2, sm: 1 }}
 						mb={1}
 					>
-						Jobba här
-					</Typography>
-					<Typography textAlign="center" variant="h5" mt={0}>
-						Vill du jobba med oss? Utmärkt val!
+						Jobba hos oss
 					</Typography>
 				</Container>
 			</FullPageImageWithText>
 			<Section $backgroundColor="#ffffff">
 				<Container>
-					<Stack marginLeft={{ xs: 0, sm: 1 }}>
-						<Typography variant="h2">Spontanansökan</Typography>
+					<Stack marginLeft={{ xs: 0, sm: 1 }} spacing={2}>
 						<Typography variant="body1">
-							Vi finns här om du har några frågor! Kontakta oss gärna om du vill
-							veta mer om våra tjänster eller har funderingar kring ditt
-							projekt. Vi svarar snabbt och hjälper dig gärna vidare!
+							Vi bygger ett bolag som växer långsiktigt och söker alltid efter
+							människor som delar våra värderingar - ärlighet, struktur,
+							innovation och kundfokus.
 						</Typography>
+						<Typography variant="body1">
+							Hos oss får du mer än bara ett uppdrag. Du får en miljö där vi når
+							längre tillsammans - som team, med våra kunder och i projekten vi
+							driver.
+						</Typography>
+						<Typography variant="body1">
+							Är du intresserad av att arbeta med oss? Hör av dig och berätta
+							mer om dig själv - vi är alltid öppna för nya samarbeten.
+						</Typography>
+
 						<Email ignoreTitle />
+						<Phone ignoreTitle />
 					</Stack>
 				</Container>
 			</Section>

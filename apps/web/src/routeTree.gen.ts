@@ -9,19 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TjansterRouteImport } from './routes/tjanster'
 import { Route as OmOssRouteImport } from './routes/om-oss'
-import { Route as JobbaHarRouteImport } from './routes/jobba-har'
+import { Route as JobbaHosOssRouteImport } from './routes/jobba-hos-oss'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TjansterRoute = TjansterRouteImport.update({
+  id: '/tjanster',
+  path: '/tjanster',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OmOssRoute = OmOssRouteImport.update({
   id: '/om-oss',
   path: '/om-oss',
   getParentRoute: () => rootRouteImport,
 } as any)
-const JobbaHarRoute = JobbaHarRouteImport.update({
-  id: '/jobba-har',
-  path: '/jobba-har',
+const JobbaHosOssRoute = JobbaHosOssRouteImport.update({
+  id: '/jobba-hos-oss',
+  path: '/jobba-hos-oss',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -38,39 +44,50 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/jobba-har': typeof JobbaHarRoute
+  '/jobba-hos-oss': typeof JobbaHosOssRoute
   '/om-oss': typeof OmOssRoute
+  '/tjanster': typeof TjansterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/jobba-har': typeof JobbaHarRoute
+  '/jobba-hos-oss': typeof JobbaHosOssRoute
   '/om-oss': typeof OmOssRoute
+  '/tjanster': typeof TjansterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/jobba-har': typeof JobbaHarRoute
+  '/jobba-hos-oss': typeof JobbaHosOssRoute
   '/om-oss': typeof OmOssRoute
+  '/tjanster': typeof TjansterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/jobba-har' | '/om-oss'
+  fullPaths: '/' | '/about' | '/jobba-hos-oss' | '/om-oss' | '/tjanster'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/jobba-har' | '/om-oss'
-  id: '__root__' | '/' | '/about' | '/jobba-har' | '/om-oss'
+  to: '/' | '/about' | '/jobba-hos-oss' | '/om-oss' | '/tjanster'
+  id: '__root__' | '/' | '/about' | '/jobba-hos-oss' | '/om-oss' | '/tjanster'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  JobbaHarRoute: typeof JobbaHarRoute
+  JobbaHosOssRoute: typeof JobbaHosOssRoute
   OmOssRoute: typeof OmOssRoute
+  TjansterRoute: typeof TjansterRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tjanster': {
+      id: '/tjanster'
+      path: '/tjanster'
+      fullPath: '/tjanster'
+      preLoaderRoute: typeof TjansterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/om-oss': {
       id: '/om-oss'
       path: '/om-oss'
@@ -78,11 +95,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OmOssRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/jobba-har': {
-      id: '/jobba-har'
-      path: '/jobba-har'
-      fullPath: '/jobba-har'
-      preLoaderRoute: typeof JobbaHarRouteImport
+    '/jobba-hos-oss': {
+      id: '/jobba-hos-oss'
+      path: '/jobba-hos-oss'
+      fullPath: '/jobba-hos-oss'
+      preLoaderRoute: typeof JobbaHosOssRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -105,8 +122,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  JobbaHarRoute: JobbaHarRoute,
+  JobbaHosOssRoute: JobbaHosOssRoute,
   OmOssRoute: OmOssRoute,
+  TjansterRoute: TjansterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
