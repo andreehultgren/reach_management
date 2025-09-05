@@ -4,7 +4,7 @@ export const COLORS = {
   textSecondary: '#666666',
   textAccent: '#005B96',
   logoColor: '#005B96',
-  logoColorTwo: "#00A3E0",
+  logoColorTwo: "#D6B861",
 }
 
 export const CompanyName = "Planova";
