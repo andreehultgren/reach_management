@@ -7,8 +7,6 @@ import {
 	Tabs,
 	Tab,
 	Paper,
-	Divider,
-	Button,
 } from "@mui/material";
 import { useState } from "react";
 import Email from "../components/ContactUs/Email";
@@ -24,7 +22,7 @@ export const Route = createFileRoute("/")({
 	component: LandingPage,
 });
 
-function TabPanel(props) {
+function TabPanel(props: { children?: React.ReactNode; index: number; value: number }) {
 	const { children, value, index, ...other } = props;
 	return (
 		<Paper
@@ -40,7 +38,7 @@ function TabPanel(props) {
 	);
 }
 
-function a11yProps(index) {
+function a11yProps(index: number) {
 	return {
 		id: `vertical-tab-${index}`,
 		"aria-controls": `vertical-tabpanel-${index}`,
@@ -50,7 +48,7 @@ function a11yProps(index) {
 export default function LandingPage() {
 	const [value, setValue] = useState(0);
 
-	const handleChange = (_, newValue) => {
+	const handleChange = (_: React.SyntheticEvent, newValue: number) => {
 		setValue(newValue);
 	};
 

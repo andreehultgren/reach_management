@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
-
-const TRANSPARENCY = 0.69;
+import { COLORS } from "../constants";
 
 const Container = styled.div<{ $height?: number }>`
   position: relative;
@@ -19,7 +17,7 @@ const Container = styled.div<{ $height?: number }>`
   }
 `;
 
-const BackgroundFilter = styled.div<{ $transparency?: number }>`
+const BackgroundFilter = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -35,7 +33,7 @@ const BackgroundFilter = styled.div<{ $transparency?: number }>`
     width: 100%;
     height: 100%;
     z-index: 1;
-    background: ${({ $transparency = TRANSPARENCY }) => `rgba(255, 255, 255, ${$transparency})`};
+    background: ${COLORS.LandingOverlay};
     transition: background 1s linear;
   }
 `;
@@ -66,6 +64,7 @@ const Content = styled.div<{ $height?: number }>`
   align-items: center;
   height: ${({ $height }) => ($height ? `${$height}px` : "100svh")};
   width: 100%;
+  color: ${COLORS.landingColor};
 `;
 
 interface IProps {
@@ -74,21 +73,10 @@ interface IProps {
 	height?: number;
 }
 
-export default function FullPageImageWithText({
-	imageUrl,
-	children,
-	height,
-}: IProps) {
-	const [loaded, setLoaded] = useState(false);
-	useEffect(() => {
-		const img = new Image();
-		img.src = imageUrl;
-		img.onload = () => setLoaded(true);
-	}, [imageUrl]);
-
+export default function FullPageImageWithText({ children, height }: IProps) {
 	return (
 		<Container data-testid="landing-page-container" $height={height}>
-			<BackgroundFilter $transparency={loaded ? TRANSPARENCY : 0.2}>
+			<BackgroundFilter>
 				<BackgroundImage />
 			</BackgroundFilter>
 			<Content data-testid="landing-page-content" $height={height}>

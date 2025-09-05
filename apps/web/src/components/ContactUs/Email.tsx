@@ -33,6 +33,7 @@ export default function Email({ ignoreTitle }: IProps) {
 						fontFamily: "monospace",
 						fontSize: "1rem",
 						flex: 1,
+						overflowX: "auto",
 					}}
 				>
 					michael.hultgren@reachmanagement.se
