@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
 	Container,
@@ -8,7 +9,7 @@ import {
 	Tab,
 	Paper,
 } from "@mui/material";
-import { useState } from "react";
+
 import Email from "../components/ContactUs/Email";
 import Calendly from "../components/ContactUs/Calendly";
 import Social from "../components/ContactUs/Social";
@@ -17,6 +18,25 @@ import Project from "../components/Project";
 import { COLORS } from "../constants";
 
 const ACTIVATE_ISO = false;
+
+const SERVICES = [
+	{
+		title: "Projektledning",
+		description: "Vi leder projekt med fokus på struktur, kommunikation och resultat. Från planering till uppföljning säkerställer vi att ditt projekt levereras i tid och inom budget."
+	},
+	{
+		title: "Projekteringsledning", 
+		description: "Vi samordnar projekteringsarbetet för att säkerställa kvalitet och effektivitet, från koncept till byggstart, med kunden i centrum."
+	},
+	{
+		title: "Byggledning",
+		description: "På plats leder vi entreprenörerna och övervakar tidplan, ekonomi och säkerhet för att säkerställa ett framgångsrikt projekt."
+	},
+	{
+		title: "Kontrollansvarig (KA)",
+		description: "Som certifierade kontrollansvariga enligt PBL säkerställer vi att lagkrav följs och att projektet godkänns av byggnadsnämnden."
+	}
+] as const;
 
 export const Route = createFileRoute("/")({
 	component: LandingPage,
@@ -60,34 +80,37 @@ export default function LandingPage() {
 					height: "100vh",
 					background: `linear-gradient(${COLORS.LandingOverlay}, ${COLORS.LandingOverlay}), url(/stockholm.jpg) no-repeat center/cover`,
 					display: "flex",
-					alignItems: "center",
+					alignItems: "flex-end",
 					justifyContent: "center",
 					textAlign: "center",
+					paddingBottom: "4rem",
+					boxSizing: "border-box",
+					"@media (max-width: 900px)": {
+						height: "calc(100vh - 6rem)",
+						paddingBottom: "3rem",
+					},
 				}}
 			>
-				<Container sx={{ height: "100%" }}>
-					<Stack height="100%">
-						<Box flex={2} />
-						<Stack flex={1}>
-							<Typography
-								variant="h1"
-								sx={{ mb: 2, fontWeight: 700, color: COLORS.landingColor }}
-							>
-								Vi når längre tillsammans
-							</Typography>
-							<Typography
-								variant="h5"
-								sx={{ maxWidth: 600, mx: "auto", color: COLORS.landingColor }}
-							>
-								För framgångsrika bygg- och fastighetsprojekt
-							</Typography>
-						</Stack>
+				<Container sx={{ display: "flex", justifyContent: "center" }}>
+					<Stack sx={{ maxWidth: "100%", width: "100%" }}>
+						<Typography
+							variant="h1"
+							sx={{ mb: 2, fontWeight: 700, color: COLORS.landingColor }}
+						>
+							Vi når längre tillsammans
+						</Typography>
+						<Typography
+							variant="h5"
+							sx={{ maxWidth: 600, mx: "auto", color: COLORS.landingColor }}
+						>
+							För framgångsrika bygg- och fastighetsprojekt
+						</Typography>
 					</Stack>
 				</Container>
 			</Box>
 
 			{/* About Section */}
-			<Box sx={{ py: 8, backgroundColor: "#ffffff" }}>
+			<Box sx={{ py: 8, backgroundColor: COLORS.white }}>
 				<Container>
 					<Stack
 						direction={{ xs: "column", md: "row" }}
@@ -129,48 +152,24 @@ export default function LandingPage() {
 			</Box>
 
 			{/* Services Section */}
-			<Box sx={{ py: 8, backgroundColor: "#f5f5f5" }}>
+			<Box sx={{ py: 8, backgroundColor: COLORS.gray50 }}>
 				<Container>
 					<Typography variant="h2" textAlign="center" sx={{ mb: 4 }}>
 						Våra tjänster
 					</Typography>
 					<Stack direction={{ xs: "column", md: "row" }} spacing={4}>
-						<Box sx={{ flex: 1, p: 2 }}>
-							<Typography variant="h4">Projektledning</Typography>
-							<Typography variant="body1">
-								Vi leder projekt med fokus på struktur, kommunikation och
-								resultat. Från planering till uppföljning säkerställer vi att
-								ditt projekt levereras i tid och inom budget.
-							</Typography>
-						</Box>
-						<Box sx={{ flex: 1, p: 2 }}>
-							<Typography variant="h4">Projekteringsledning</Typography>
-							<Typography variant="body1">
-								Vi samordnar projekteringsarbetet för att säkerställa kvalitet
-								och effektivitet, från koncept till byggstart, med kunden i
-								centrum.
-							</Typography>
-						</Box>
-						<Box sx={{ flex: 1, p: 2 }}>
-							<Typography variant="h4">Byggledning</Typography>
-							<Typography variant="body1">
-								På plats leder vi entreprenörerna och övervakar tidplan, ekonomi
-								och säkerhet för att säkerställa ett framgångsrikt projekt.
-							</Typography>
-						</Box>
-						<Box sx={{ flex: 1, p: 2 }}>
-							<Typography variant="h4">Kontrollansvarig (KA)</Typography>
-							<Typography variant="body1">
-								Som certifierade kontrollansvariga enligt PBL säkerställer vi
-								att lagkrav följs och att projektet godkänns av byggnadsnämnden.
-							</Typography>
-						</Box>
+						{SERVICES.map((service) => (
+							<Box key={service.title} sx={{ flex: 1, p: 2 }}>
+								<Typography variant="h4">{service.title}</Typography>
+								<Typography variant="body1">{service.description}</Typography>
+							</Box>
+						))}
 					</Stack>
 				</Container>
 			</Box>
 
 			{/* Why Choose Us Section */}
-			<Box sx={{ py: 8, backgroundColor: "#ffffff" }}>
+			<Box sx={{ py: 8, backgroundColor: COLORS.white }}>
 				<Container>
 					<Stack
 						direction={{ xs: "column", md: "row" }}
@@ -213,7 +212,7 @@ export default function LandingPage() {
 			</Box>
 
 			{/* Certifications Section */}
-			<Box sx={{ py: 8, backgroundColor: "#f5f5f5" }}>
+			<Box sx={{ py: 8, backgroundColor: COLORS.gray50 }}>
 				<Container>
 					<Typography variant="h2" textAlign="center" sx={{ mb: 4 }}>
 						Certifieringar
@@ -278,7 +277,7 @@ export default function LandingPage() {
 			</Box>
 
 			{/* Consultants Section */}
-			<Box sx={{ py: 8, backgroundColor: "#ffffff" }}>
+			<Box sx={{ py: 8, backgroundColor: COLORS.white }}>
 				<Container>
 					<Typography variant="h2" textAlign="center" sx={{ mb: 4 }}>
 						Våra konsulter
@@ -294,7 +293,7 @@ export default function LandingPage() {
 			</Box>
 
 			{/* Contact Section */}
-			<Box id="contact" sx={{ py: 8, backgroundColor: "#f5f5f5" }}>
+			<Box id="contact" sx={{ py: 8, backgroundColor: COLORS.gray50 }}>
 				<Container>
 					<Typography variant="h2" textAlign="center" sx={{ mb: 4 }}>
 						Kontakta oss

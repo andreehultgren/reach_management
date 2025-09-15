@@ -8,9 +8,9 @@ import { getAnalytics } from "firebase/analytics";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCszyVgbyPbj3wTJeg8mAO4X-bheewVhmA",
-  authDomain: "planova-ab.firebaseapp.com",
-  projectId: "planova-ab",
-  storageBucket: "planova-ab.firebasestorage.app",
+  authDomain: "reach-management-ab.firebaseapp.com",
+  projectId: "reach-management-ab",
+  storageBucket: "reach-management-ab.firebasestorage.app",
   messagingSenderId: "252671480751",
   appId: "1:252671480751:web:85d43c55b213dd4c40d55a",
   measurementId: "G-8QLKPRN8MT"

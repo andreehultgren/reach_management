@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Container, Typography, Stack } from "@mui/material";
+
 import FullPageImageWithText from "../components/FullPageImageWithText";
 import Section from "../components/Section";
-import { Container } from "@mui/material";
-import { Typography, Stack } from "@mui/material";
 import ContactUs from "../components/ContactUs";
+import { COLORS } from "../constants";
 
 export const Route = createFileRoute("/om-oss")({
 	component: LandingPage,
@@ -32,7 +33,7 @@ export default function LandingPage() {
 					</Typography>
 				</Container>
 			</FullPageImageWithText>
-			<Section $backgroundColor="#ffffff">
+			<Section $backgroundColor={COLORS.white}>
 				<Container>
 					<Stack marginLeft={{ xs: 0, sm: 1 }}>
 						<Typography variant="h3">Vi når längre tillsammans</Typography>
@@ -52,7 +53,7 @@ export default function LandingPage() {
 					</Stack>
 				</Container>
 			</Section>
-			<Section $backgroundColor="#ededed">
+			<Section $backgroundColor={COLORS.darkGray}>
 				<Container>
 					<Stack marginLeft={{ xs: 0, sm: 1 }}>
 						<Typography variant="h3">Vad betyder Reach Management</Typography>
@@ -81,7 +82,7 @@ export default function LandingPage() {
 					</Stack>
 				</Container>
 			</Section>
-			<Section $backgroundColor="#ffffff">
+			<Section $backgroundColor={COLORS.white}>
 				<Container>
 					<Stack marginLeft={{ xs: 0, sm: 1 }}>
 						<Typography variant="h3">Vilka vi är</Typography>
@@ -128,7 +129,7 @@ export default function LandingPage() {
 				</Container>
 			</Section>
 
-			<Section $backgroundColor="#ededed">
+			<Section $backgroundColor={COLORS.darkGray}>
 				<Container>
 					<Stack marginLeft={{ xs: 0, sm: 1 }}>
 						<Typography variant="h3">Vårt erbjudande</Typography>
@@ -147,7 +148,7 @@ export default function LandingPage() {
 				</Container>
 			</Section>
 
-			<Section $backgroundColor="#ffffff">
+			<Section $backgroundColor={COLORS.white}>
 				<Container>
 					<Stack marginLeft={{ xs: 0, sm: 1 }}>
 						<Typography variant="h3">Därför Reach Management</Typography>
@@ -166,7 +167,7 @@ export default function LandingPage() {
 				</Container>
 			</Section>
 
-			<Section $backgroundColor="#ededed">
+			<Section $backgroundColor={COLORS.darkGray}>
 				<Container>
 					<Stack marginLeft={{ xs: 0, sm: 1 }}>
 						<Typography variant="h3">Våra principer</Typography>
@@ -186,7 +187,7 @@ export default function LandingPage() {
 				</Container>
 			</Section>
 
-			<Section $backgroundColor="#ffffff">
+			<Section $backgroundColor={COLORS.white}>
 				<Container>
 					<Stack marginLeft={{ xs: 0, sm: 1 }}>
 						<Typography variant="h3">

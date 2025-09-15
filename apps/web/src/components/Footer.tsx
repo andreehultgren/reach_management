@@ -1,10 +1,12 @@
-import styled from "styled-components";
 import { Stack, Typography } from "@mui/material";
+import styled from "styled-components";
+
+import { COLORS, COMPANY_INFO } from "../constants";
 
 const Divider = styled.span`
   height: 1.5em;
   width: 1px;
-  background: #555;
+  background: ${COLORS.divider};
   margin: 0 1rem;
   display: inline-block;
   @media (max-width: 600px) {
@@ -18,8 +20,8 @@ export default function FooterPage() {
 			<Stack
 				sx={{
 					width: "100%",
-					background: "#222",
-					color: "#fff",
+					background: COLORS.footer,
+					color: COLORS.white,
 					display: "flex",
 					flexDirection: { xs: "column", sm: "row" },
 					alignItems: "center",
@@ -28,14 +30,14 @@ export default function FooterPage() {
 				}}
 				divider={<Divider />}
 			>
-				<Typography variant="body2">© 2025 Reach Management AB</Typography>
-				<Typography variant="body2">Org.nr: 556677-8899</Typography>
+				<Typography variant="body2">© 2025 {COMPANY_INFO.name} AB</Typography>
+				<Typography variant="body2">Org.nr: {COMPANY_INFO.orgNumber}</Typography>
 				<Typography variant="body2">
 					<a
-						href="mailto:michael.hultgren@reachmanagement.se"
+						href={`mailto:${COMPANY_INFO.email}`}
 						style={{ color: "inherit" }}
 					>
-						michael.hultgren@reachmanagement.se
+						{COMPANY_INFO.email}
 					</a>
 				</Typography>
 			</Stack>
