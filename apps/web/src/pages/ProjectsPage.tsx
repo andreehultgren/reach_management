@@ -1,33 +1,35 @@
 import styled from 'styled-components';
+import { Container, Typography, Box } from '@mui/material';
 import Project from '../components/Project';
+import { COLORS } from '../constants';
 
-const Container = styled.div`
+const ProjectsContainer = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
   padding: 2rem;
   box-sizing: border-box;
   margin: 0 auto;
-`;
-
-const Title = styled.h1`
-  margin-bottom: 1.5rem;
+  max-width: 1200px;
 `;
 
 const ProjectsScroller = styled.div`
   display: flex;
   flex-direction: row;
   overflow-x: auto;
-  gap: 16px;
-  padding-bottom: 1rem;
+  gap: 24px;
+  padding: 1rem 0 2rem 0;
   scrollbar-width: thin;
-  scrollbar-color: #fff #fff;
+  scrollbar-color: ${COLORS.gray300} transparent;
   &::-webkit-scrollbar {
     height: 8px;
   }
   &::-webkit-scrollbar-thumb {
-    background: #fff;
+    background: ${COLORS.gray300};
     border-radius: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
   }
 `;
 
@@ -84,13 +86,42 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <Container>
-      <Title>Construction Projects</Title>
-      <ProjectsScroller>
-        {projects.map((project) => (
-          <Project key={project.id} {...project} />
-        ))}
-      </ProjectsScroller>
-    </Container>
+    <Box sx={{ py: 8, backgroundColor: COLORS.gray50 }}>
+      <Container>
+        <Box sx={{ textAlign: "center", mb: 6 }}>
+          <Typography 
+            variant="h2" 
+            sx={{ 
+              mb: 3,
+              color: COLORS.textPrimary,
+              fontWeight: 600,
+            }}
+          >
+            Våra projekt
+          </Typography>
+          <Box 
+            sx={{ 
+              width: 80, 
+              height: 2, 
+              backgroundColor: COLORS.primary,
+              borderRadius: "1px",
+              mx: "auto",
+              mb: 4
+            }} 
+          />
+          <Typography variant="h5" sx={{ color: COLORS.textSecondary, maxWidth: 600, mx: "auto" }}>
+            Se exempel på projekt vi har arbetat med
+          </Typography>
+        </Box>
+        
+        <ProjectsContainer>
+          <ProjectsScroller>
+            {projects.map((project) => (
+              <Project key={project.id} {...project} />
+            ))}
+          </ProjectsScroller>
+        </ProjectsContainer>
+      </Container>
+    </Box>
   );
 }

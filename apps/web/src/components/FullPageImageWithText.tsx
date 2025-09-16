@@ -38,11 +38,11 @@ const BackgroundFilter = styled.div`
   }
 `;
 
-const BackgroundImage = styled.div`
+const BackgroundImage = styled.div<{ $desktopImage: string; $mobileImage: string }>`
   position: relative;
   width: 100%;
   height: 100%;
-  background-image: url('/stockholm.jpg');
+  background-image: url(${props => props.$desktopImage});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -51,7 +51,7 @@ const BackgroundImage = styled.div`
     background-position: center;
   }
   @media (max-width: 900px) {
-    background-image: url('/stockholm.jpg');
+    background-image: url(${props => props.$mobileImage});
   }
 `;
 
@@ -68,16 +68,17 @@ const Content = styled.div<{ $height?: number }>`
 `;
 
 interface IProps {
-	imageUrl: string;
+	desktopImage: string;
+	mobileImage: string;
 	children?: React.ReactNode;
 	height?: number;
 }
 
-export default function FullPageImageWithText({ children, height }: IProps) {
+export default function FullPageImageWithText({ desktopImage, mobileImage, children, height }: IProps) {
 	return (
 		<Container data-testid="landing-page-container" $height={height}>
 			<BackgroundFilter>
-				<BackgroundImage />
+				<BackgroundImage $desktopImage={desktopImage} $mobileImage={mobileImage} />
 			</BackgroundFilter>
 			<Content data-testid="landing-page-content" $height={height}>
 				{children}
