@@ -1,0 +1,190 @@
+# Reach Management - Cursor Rules
+
+## Project Overview
+This is a Swedish construction project management company website built with React, TypeScript, and modern web technologies. The company name is "Reach Management" (formerly "Planova").
+
+## Tech Stack
+- **Frontend**: React 19, TypeScript, Vite
+- **Routing**: TanStack Router (file-based routing)
+- **Styling**: Styled Components + Material-UI (MUI)
+- **Icons**: Material-UI Icons
+- **Deployment**: Firebase Hosting
+- **3D Graphics**: Three.js (React Three Fiber)
+- **Linting**: ESLint with TypeScript
+
+## Architecture Patterns
+
+### File Structure
+```
+apps/web/src/
+├── components/          # Reusable UI components
+├── routes/             # TanStack Router file-based routes
+├── constants.ts        # Centralized constants (colors, breakpoints, etc.)
+├── theme.ts           # MUI theme configuration
+├── firebase_config.ts # Firebase configuration
+└── main.tsx           # App entry point
+```
+
+### Component Patterns
+- **Functional Components**: Use React functional components with TypeScript
+- **Styled Components**: Primary styling method with styled-components
+- **MUI Integration**: Use MUI components for complex UI elements (Typography, Container, etc.)
+- **Props Interface**: Always define TypeScript interfaces for component props
+- **Default Props**: Use default parameters instead of defaultProps
+
+### Styling Guidelines
+
+#### Styled Components
+```typescript
+const ComponentName = styled.div<{ $isActive?: boolean }>`
+  // Use $ prefix for styled-components props
+  color: ${props => props.$isActive ? COLORS.primary : COLORS.textPrimary};
+  
+  // Use constants from constants.ts
+  padding: ${SPACING.md};
+  
+  // Mobile-first responsive design
+  @media (max-width: ${BREAKPOINTS.mobile}) {
+    padding: ${SPACING.sm};
+  }
+`;
+```
+
+#### Color System
+- **Primary Colors**: Use `COLORS.primary` (#005B96), `COLORS.accent` (#D6B861)
+- **Text Colors**: `COLORS.textPrimary`, `COLORS.textSecondary`, `COLORS.textOnDark`
+- **Backgrounds**: `COLORS.white`, `COLORS.gray50`, `COLORS.gray100`
+- **Semantic**: `COLORS.success`, `COLORS.warning`, `COLORS.error`
+
+#### Breakpoints
+- **Mobile**: `768px` and below
+- **Tablet**: `1024px` and below  
+- **Desktop**: `1200px` and above
+
+### Routing Patterns
+- **File-based**: Use TanStack Router file-based routing
+- **Route Definition**: Always export `Route` using `createFileRoute`
+- **Component Export**: Export default component function
+- **Nested Routes**: Use `__root.tsx` for layout, individual files for pages
+
+```typescript
+export const Route = createFileRoute("/page-name")({
+  component: PageComponent,
+});
+
+export default function PageComponent() {
+  return <div>Page content</div>;
+}
+```
+
+### State Management
+- **Local State**: Use `useState` for component state
+- **Effects**: Use `useEffect` for side effects
+- **Refs**: Use `useRef` for DOM references
+- **No Global State**: Avoid Redux/Context for simple state
+
+### Mobile-First Development
+- **Responsive Design**: Always start with mobile, then add desktop styles
+- **Touch Interactions**: Use `touch-action: manipulation` for buttons
+- **Viewport Units**: Use `100vh` with `100dvh` fallback for mobile
+- **Hamburger Menu**: Mobile menu should be full-screen overlay
+
+### Performance Guidelines
+- **Image Optimization**: Use proper aspect ratios and object-fit
+- **Lazy Loading**: Implement for heavy components
+- **Bundle Size**: Keep dependencies minimal
+- **Code Splitting**: Use dynamic imports for large components
+
+### Accessibility
+- **ARIA Labels**: Add proper ARIA labels for interactive elements
+- **Keyboard Navigation**: Ensure all interactive elements are keyboard accessible
+- **Color Contrast**: Use high contrast colors for text
+- **Focus States**: Provide visible focus indicators
+
+### Code Quality
+- **TypeScript**: Strict typing, no `any` types
+- **ESLint**: Follow project ESLint rules
+- **Imports**: Organize imports (React, third-party, local)
+- **Constants**: Use constants from `constants.ts` instead of hardcoded values
+- **Error Handling**: Implement proper error boundaries
+
+### Component Guidelines
+
+#### Props Interface
+```typescript
+interface ComponentProps {
+  title: string;
+  isActive?: boolean;
+  children?: React.ReactNode;
+  onClick?: () => void;
+}
+```
+
+#### Event Handlers
+```typescript
+const handleClick = (e: React.MouseEvent) => {
+  e.preventDefault();
+  e.stopPropagation();
+  // Handle click
+};
+```
+
+#### Styled Component Props
+```typescript
+const StyledComponent = styled.div<{ $isOpen: boolean; $variant?: 'primary' | 'secondary' }>`
+  // Use $ prefix for styled-components props
+  display: ${props => props.$isOpen ? 'flex' : 'none'};
+`;
+```
+
+### Common Patterns
+
+#### Mobile Menu
+- Use full-screen overlay with backdrop blur
+- Position close button consistently
+- Ensure links work without click handlers interfering
+- Use `pointer-events` for proper touch handling
+
+#### Landing Pages
+- Use `FullPageImageWithText` component for hero sections
+- Implement proper viewport handling for mobile
+- Use `Section` component for content sections
+- Center content properly on all screen sizes
+
+#### Navigation
+- Fixed navbar with transparent background
+- Smooth transitions and hover effects
+- Mobile hamburger menu with proper touch handling
+- Consistent spacing and typography
+
+### Firebase Integration
+- **Hosting**: Deploy to Firebase Hosting
+- **Configuration**: Use `firebase_config.ts` for Firebase setup
+- **Environment**: Production URL: `https://reach-management-ab.web.app`
+
+### Development Workflow
+- **Dev Server**: `npm run dev` (Vite dev server)
+- **Build**: `npm run build` (TypeScript + Vite build)
+- **Deploy**: `npm run deploy` (Build + Firebase deploy)
+- **Lint**: `npm run lint` (ESLint check)
+
+### Content Guidelines
+- **Language**: Swedish (primary), English (technical)
+- **Company Name**: "Reach Management" (not "Planova")
+- **Tone**: Professional, Scandinavian design aesthetic
+- **Typography**: Inter font family, clean and readable
+
+### Common Issues to Avoid
+- **Double-tap**: Ensure mobile buttons have proper touch handling
+- **Viewport Issues**: Use proper height units for mobile
+- **Link Navigation**: Don't interfere with React Router navigation
+- **Z-index Conflicts**: Use constants from `Z_INDEX` object
+- **Hardcoded Values**: Always use constants from `constants.ts`
+
+### Testing Approach
+- **Manual Testing**: Test on mobile and desktop
+- **Cross-browser**: Test in Chrome, Safari, Firefox
+- **Responsive**: Test at different screen sizes
+- **Touch**: Test touch interactions on mobile devices
+
+Remember: This is a professional construction management website. Prioritize clean, functional design with excellent mobile experience and accessibility.
