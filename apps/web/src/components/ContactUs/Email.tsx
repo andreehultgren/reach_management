@@ -16,7 +16,7 @@ export default function Email({ ignoreTitle }: IProps) {
 				<IconButton
 					onClick={() => {
 						navigator.clipboard
-							.writeText("michael.hultgren@reachmanagement.se")
+							.writeText("info@reachmanagement.se")
 							.then(() => {
 								alert("Email kopierad till urklipp!");
 							});
@@ -36,7 +36,7 @@ export default function Email({ ignoreTitle }: IProps) {
 						overflowX: "auto",
 					}}
 				>
-					michael.hultgren@reachmanagement.se
+					info@reachmanagement.se
 				</pre>
 			</Box>
 		</Stack>

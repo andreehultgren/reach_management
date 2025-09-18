@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TjansterRouteImport } from './routes/tjanster'
 import { Route as OmOssRouteImport } from './routes/om-oss'
 import { Route as JobbaHosOssRouteImport } from './routes/jobba-hos-oss'
+import { Route as DesignSystemRouteImport } from './routes/design-system'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -30,6 +31,11 @@ const JobbaHosOssRoute = JobbaHosOssRouteImport.update({
   path: '/jobba-hos-oss',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DesignSystemRoute = DesignSystemRouteImport.update({
+  id: '/design-system',
+  path: '/design-system',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -44,6 +50,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/design-system': typeof DesignSystemRoute
   '/jobba-hos-oss': typeof JobbaHosOssRoute
   '/om-oss': typeof OmOssRoute
   '/tjanster': typeof TjansterRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/design-system': typeof DesignSystemRoute
   '/jobba-hos-oss': typeof JobbaHosOssRoute
   '/om-oss': typeof OmOssRoute
   '/tjanster': typeof TjansterRoute
@@ -59,21 +67,42 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/design-system': typeof DesignSystemRoute
   '/jobba-hos-oss': typeof JobbaHosOssRoute
   '/om-oss': typeof OmOssRoute
   '/tjanster': typeof TjansterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/jobba-hos-oss' | '/om-oss' | '/tjanster'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/design-system'
+    | '/jobba-hos-oss'
+    | '/om-oss'
+    | '/tjanster'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/jobba-hos-oss' | '/om-oss' | '/tjanster'
-  id: '__root__' | '/' | '/about' | '/jobba-hos-oss' | '/om-oss' | '/tjanster'
+  to:
+    | '/'
+    | '/about'
+    | '/design-system'
+    | '/jobba-hos-oss'
+    | '/om-oss'
+    | '/tjanster'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/design-system'
+    | '/jobba-hos-oss'
+    | '/om-oss'
+    | '/tjanster'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  DesignSystemRoute: typeof DesignSystemRoute
   JobbaHosOssRoute: typeof JobbaHosOssRoute
   OmOssRoute: typeof OmOssRoute
   TjansterRoute: typeof TjansterRoute
@@ -102,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JobbaHosOssRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/design-system': {
+      id: '/design-system'
+      path: '/design-system'
+      fullPath: '/design-system'
+      preLoaderRoute: typeof DesignSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -122,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  DesignSystemRoute: DesignSystemRoute,
   JobbaHosOssRoute: JobbaHosOssRoute,
   OmOssRoute: OmOssRoute,
   TjansterRoute: TjansterRoute,

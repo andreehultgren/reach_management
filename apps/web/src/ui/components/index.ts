@@ -6,6 +6,8 @@ export * from './atoms/Icon';
 // Molecules
 export * from './molecules/Accordion';
 export * from './molecules/Card';
+export * from './molecules/ConsultantCard';
+export * from './molecules/ConsultantScroller';
 export * from './molecules/ProjectCard/ProjectCard';
 export * from './molecules/ProjectScroller/ProjectScroller';
 export * from './molecules/Tabs/Tabs';

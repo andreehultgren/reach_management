@@ -30,7 +30,7 @@ export const Default: Story = {
   args: {
     companyName: 'Reach Management',
     orgNumber: '556677-8899',
-    email: 'michael.hultgren@reachmanagement.se',
+    email: 'info@reachmanagement.se',
   },
 };
 
@@ -38,7 +38,7 @@ export const WithLinks: Story = {
   args: {
     companyName: 'Reach Management',
     orgNumber: '556677-8899',
-    email: 'michael.hultgren@reachmanagement.se',
+    email: 'info@reachmanagement.se',
     links: [
       { text: 'Integritetspolicy', href: '/privacy' },
       { text: 'Användarvillkor', href: '/terms' },

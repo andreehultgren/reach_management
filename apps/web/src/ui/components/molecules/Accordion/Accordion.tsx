@@ -22,7 +22,7 @@ const AccordionContainer = styled.div<{ $expanded: boolean }>`
   
   ${({ $expanded }) => $expanded && `
     border-color: ${colors.primary};
-    box-shadow: 0 8px 25px rgba(0, 91, 150, 0.15);
+    box-shadow: 0 8px 25px rgba(44, 44, 44, 0.15);
     transform: translateY(-2px);
   `}
 `;
@@ -61,7 +61,7 @@ const AccordionHeader = styled.button<{ $expanded: boolean }>`
   
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 91, 150, 0.1);
+    box-shadow: 0 0 0 3px rgba(44, 44, 44, 0.1);
   }
   
   &:active {

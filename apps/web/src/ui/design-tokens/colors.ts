@@ -10,9 +10,9 @@ export const colors = {
   textLight: '#6B7280',        // Light gray
   textOnDark: '#FFFFFF',       // White text for dark backgrounds
   
-  // Brand colors
-  primary: '#404040',          // Main brand blue
-  primaryLight: '#707070',     // Light blue
+  // Brand colors - White/Grey/Gold scheme
+  primary: '#2C2C2C',          // Dark grey for primary
+  primaryLight: '#F8F9FA',     // Light grey/white
   accent: '#D6B861',           // Gold accent
   accentLight: '#FDF4E3',      // Light gold
   
@@ -35,8 +35,8 @@ export const colors = {
   
   // Legacy colors for compatibility
   landingColor: '#ffffff',
-  textAccent: '#005B96',
-  logoColor: '#005B96',
+  textAccent: '#2C2C2C',
+  logoColor: '#2C2C2C',
   logoColorTwo: "#D6B861",
   LandingOverlay: "rgba(0,0,0,0.33)",
   gray: '#F3F4F6',

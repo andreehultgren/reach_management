@@ -30,6 +30,8 @@ const variantStyles = {
     border: 'none',
     '&:hover': {
       background: colors.primary,
+      transform: 'translateY(-1px)',
+      boxShadow: `0 4px 12px ${colors.accent}40`,
     },
   },
   secondary: {
@@ -38,15 +40,19 @@ const variantStyles = {
     border: 'none',
     '&:hover': {
       background: colors.gray700,
+      transform: 'translateY(-1px)',
+      boxShadow: `0 4px 12px ${colors.primary}40`,
     },
   },
   outline: {
     background: 'transparent',
     color: colors.primary,
-    border: `1px solid ${colors.primary}`,
+    border: `2px solid ${colors.primary}`,
     '&:hover': {
       background: colors.primary,
       color: colors.white,
+      transform: 'translateY(-1px)',
+      boxShadow: `0 4px 12px ${colors.primary}40`,
     },
   },
   ghost: {
@@ -55,6 +61,7 @@ const variantStyles = {
     border: 'none',
     '&:hover': {
       background: colors.gray100,
+      color: colors.accent,
     },
   },
 };

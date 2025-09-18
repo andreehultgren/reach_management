@@ -2,10 +2,12 @@ import { Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { ThemeProvider } from "@mui/material/styles";
 import { styled } from "styled-components";
+import React from "react";
 
 import { Navbar, Footer } from "./ui";
 import { colors } from "./ui/design-tokens";
 import { theme } from "./theme";
+import ContactUs from "./components/ContactUs";
 
 const AppWrapper = styled.div`
   display: flex;
@@ -18,6 +20,8 @@ const AppWrapper = styled.div`
 
 
 function App() {
+	const [showContactDialog, setShowContactDialog] = React.useState(false);
+
 	return (
 		<ThemeProvider theme={theme}>
 			<AppWrapper>
@@ -35,10 +39,7 @@ function App() {
 					ctaButton={{
 						text: "Kontakta oss",
 						onClick: () => {
-							const contactSection = document.getElementById('contact');
-							if (contactSection) {
-								contactSection.scrollIntoView({ behavior: 'smooth' });
-							}
+							setShowContactDialog(true);
 						}
 					}}
 				/>
@@ -54,6 +55,13 @@ function App() {
 						{ text: "Cookies", href: "/cookies" }
 					]}
 				/>
+				{/* ContactUs dialog */}
+				{showContactDialog && (
+					<ContactUs 
+						triggerOpen={true}
+						onClose={() => setShowContactDialog(false)}
+					/>
+				)}
 			</AppWrapper>
 		</ThemeProvider>
 	);

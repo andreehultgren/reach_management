@@ -1,22 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
+import React from "react";
 
 import { 
 	Typography, 
 	Button, 
-	Accordion, 
-	Tabs, 
 	PageSection, 
 	HeroSection,
-	ProjectCard,
-	ProjectScroller,
 	ImageText
 } from "../ui";
+import { ConsultantScroller } from "../ui/components/molecules/ConsultantScroller/ConsultantScroller";
 import { colors, spacing } from "../ui/design-tokens";
 import { ArrowForward } from "@mui/icons-material";
+import ContactUs from "../components/ContactUs";
+// Removed ContactForm import - using simple email display instead
 
-import Email from "../components/ContactUs/Email";
-import Calendly from "../components/ContactUs/Calendly";
-import Social from "../components/ContactUs/Social";
 
 
 const SERVICES = [
@@ -38,12 +35,14 @@ const SERVICES = [
 	}
 ] as const;
 
+
 export const Route = createFileRoute("/")({
 	component: LandingPage,
 });
 
 
 export default function LandingPage() {
+	const [showContactDialog, setShowContactDialog] = React.useState(false);
 
 	return (
 		<div>
@@ -97,14 +96,36 @@ export default function LandingPage() {
 					</Typography>
 				</div>
 					
-					<div style={{ maxWidth: 900, margin: '0 auto' }}>
+					<div style={{ 
+						display: 'grid', 
+						gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+						gap: spacing[6],
+						maxWidth: 1000, 
+						margin: '0 auto' 
+					}}>
 						{SERVICES.map((service) => (
-							<div key={service.title} style={{ marginBottom: spacing[3] }}>
-								<Accordion title={service.title}>
-									<Typography variant="body1" color="secondary" style={{ lineHeight: 1.7 }}>
-										{service.description}
-									</Typography>
-								</Accordion>
+							<div key={service.title} style={{
+								backgroundColor: colors.white,
+								padding: spacing[6],
+								borderRadius: '1rem',
+								boxShadow: '0 8px 25px rgba(0,0,0,0.08)',
+								border: `1px solid ${colors.gray200}`,
+								transition: 'all 0.3s ease',
+								cursor: 'pointer'
+							}}>
+								<Typography variant="h6" color="primary" style={{ 
+									marginBottom: spacing[3],
+									fontWeight: 600,
+									fontSize: '1.25rem'
+								}}>
+									{service.title}
+								</Typography>
+								<Typography variant="body1" color="secondary" style={{ 
+									lineHeight: 1.7,
+									fontSize: '1rem'
+								}}>
+									{service.description}
+								</Typography>
 							</div>
 						))}
 					</div>
@@ -138,38 +159,8 @@ export default function LandingPage() {
 				/>
 			</PageSection>
 
-			{/* Certifications Section */}
-			<PageSection variant="testimonial" align="center">
-				<div style={{ textAlign: 'center', marginBottom: spacing[8] }}>
-					<Typography variant="h2" color="primary" style={{ marginBottom: spacing[4] }}>
-						Certifieringar
-					</Typography>
-					<div style={{ 
-						width: 80, 
-						height: 2, 
-						backgroundColor: colors.primary,
-						borderRadius: "1px",
-						margin: '0 auto',
-						marginBottom: spacing[6]
-					}} />
-					<Typography variant="h5" color="secondary" style={{ maxWidth: 600, margin: '0 auto' }}>
-						Vi arbetar enligt branschstandarder och lagkrav
-					</Typography>
-				</div>
-				
-				<ImageText
-					image={{
-						src: "/rise.png",
-						alt: "Rise Certification"
-					}}
-					title="Kontrollansvarig enligt PBL"
-					content="Vi är certifierade enligt Plan- och bygglagen (PBL) och säkerställer att ditt projekt uppfyller alla lagkrav. Vår certifiering garanterar att vi följer de senaste reglerna och standarderna inom byggbranschen."
-					orientation="center"
-				/>
-			</PageSection>
-
 			{/* Consultants Section */}
-			<PageSection variant="feature" align="center">
+			<PageSection variant="testimonial" align="center">
 				<div style={{ textAlign: 'center', marginBottom: spacing[8] }}>
 					<Typography variant="h2" color="primary" style={{ marginBottom: spacing[4] }}>
 						Våra konsulter
@@ -186,17 +177,34 @@ export default function LandingPage() {
 						Erfarna experter som driver dina projekt framåt
 					</Typography>
 				</div>
-				<ProjectScroller variant="showcase">
-					<ProjectCard
-						title="Michael Hultgren"
-						description="Byggprojektledare med över 10 års erfarenhet inom byggbranschen. Specialiserad på hållbara bygglösningar och effektiv projektledning."
-						image="/michael.jpg"
-						variant="featured"
-						status="completed"
-						category="Projektledare"
-						year="2024"
-					/>
-				</ProjectScroller>
+				<ConsultantScroller 
+					variant="showcase"
+					consultants={[{
+						name: "Michael Hultgren",
+						title: "Senior Byggprojektledare",
+						image: "/michael.jpg",
+						experience: "10+ års erfarenhet",
+						skills: [
+							"Projektledning",
+							"Byggledning", 
+							"PBL Kontrollansvarig",
+							"Kvalitetskontroll",
+							"Hållbara bygglösningar",
+							"Teamledning"
+						],
+						certifications: [
+							{ name: "PBL Kontrollansvarig", year: "2023", issuer: "Boverket" },
+							{ name: "ISO 9001 Lead Auditor", year: "2022", issuer: "DNV" },
+							{ name: "PMP Certification", year: "2021", issuer: "PMI" }
+						],
+						status: "available",
+						variant: "featured",
+						onContact: () => {
+							setShowContactDialog(true);
+						},
+						
+					}]}
+				/>
 			</PageSection>
 
 			{/* Call to Action Section */}
@@ -237,6 +245,10 @@ export default function LandingPage() {
 							borderRadius: "1rem",
 							boxShadow: "0 8px 25px rgba(0,0,0,0.2)",
 						}}
+						onClick={() => {
+							// Open ContactUs dialog
+							setShowContactDialog(true);
+						}}
 					>
 						Kontakta oss
 					</Button>
@@ -255,6 +267,9 @@ export default function LandingPage() {
 							alignItems: 'center',
 							gap: spacing[2]
 						}}
+						onClick={() => {
+							setShowContactDialog(true);
+						}}
 					>
 						Se våra tjänster
 						<ArrowForward />
@@ -264,15 +279,15 @@ export default function LandingPage() {
 
 			{/* Contact Section */}
 			<PageSection variant="testimonial" align="center">
-				<div style={{ textAlign: 'center', marginBottom: spacing[8] }}>
+				<div id="contact-section" style={{ textAlign: 'center', marginBottom: spacing[8] }}>
 					<Typography variant="h2" color="primary" style={{ marginBottom: spacing[4] }}>
 						Kontakta oss
 					</Typography>
 					<div style={{ 
 						width: 80, 
-						height: 2, 
-						backgroundColor: colors.primary,
-						borderRadius: "1px",
+						height: 3, 
+						background: `linear-gradient(90deg, ${colors.primary} 0%, ${colors.accent} 100%)`,
+						borderRadius: "2px",
 						margin: '0 auto',
 						marginBottom: spacing[6]
 					}} />
@@ -282,33 +297,32 @@ export default function LandingPage() {
 						lineHeight: 1.6
 					}}>
 						Har du frågor eller vill diskutera ditt nästa projekt? Vi finns här
-						för att hjälpa dig vidare. Välj hur du vill nå oss!
+						för att hjälpa dig vidare. Skicka oss ett meddelande så återkommer vi snart!
 					</Typography>
 				</div>
 				
-				<div style={{ 
-					backgroundColor: colors.white, 
-					borderRadius: '1.5rem',
-					boxShadow: '0 20px 40px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.06)',
-					border: `1px solid ${colors.gray200}`,
-					overflow: "hidden",
-					maxWidth: 900,
-					margin: '0 auto'
-				}}>
-					<Tabs 
-						tabs={[
-							{ id: 'email', label: 'E-post', content: <Email /> },
-							{ id: 'meeting', label: 'Boka möte', content: <Calendly /> },
-							{ id: 'social', label: 'Sociala medier', content: <Social /> }
-						]}
-						variant="default"
-						defaultActiveTab="email"
-						onChange={(tabId) => {
-							console.log('Tab changed:', tabId);
-						}}
-					/>
-				</div>
+        {/* Contact Information */}
+        <Typography variant="h5" color="secondary" style={{ 
+          textAlign: 'center',
+          marginTop: spacing[4]
+        }}>
+          <a href="mailto:info@reachmanagement.se" style={{ 
+            color: 'inherit',
+            textDecoration: 'none',
+            fontFamily: 'inherit',
+            fontWeight: 'inherit'
+          }}>
+            info@reachmanagement.se
+          </a>
+        </Typography>
 			</PageSection>
+			{/* ContactUs dialog */}
+			{showContactDialog && (
+				<ContactUs 
+					triggerOpen={true}
+					onClose={() => setShowContactDialog(false)}
+				/>
+			)}
 		</div>
 	);
 }

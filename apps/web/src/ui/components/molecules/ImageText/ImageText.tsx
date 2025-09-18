@@ -8,23 +8,42 @@ const ImageTextContainer = styled.div<{ $orientation: 'left' | 'right' | 'center
   grid-template-columns: ${({ $orientation }) => {
     switch ($orientation) {
       case 'left':
-        return '1fr 1fr';
+        return '1fr 1.2fr';
       case 'right':
-        return '1fr 1fr';
+        return '1.2fr 1fr';
       case 'center':
         return '1fr';
       default:
-        return '1fr 1fr';
+        return '1fr 1.2fr';
     }
   }};
-  gap: ${spacing[8]};
+  gap: ${({ $orientation }) => $orientation === 'center' ? spacing[4] : spacing[6]};
   align-items: center;
-  max-width: ${designValues.maxWidth["7xl"]};
+  max-width: ${({ $orientation }) => 
+    $orientation === 'center' ? designValues.maxWidth["4xl"] : designValues.maxWidth["5xl"]
+  };
   margin: 0 auto;
+  padding: ${({ $orientation }) => 
+    $orientation === 'center' 
+      ? `${spacing[6]} ${spacing[5]}`
+      : `${spacing[4]} 0`
+  };
+  background: ${({ $orientation }) => 
+    $orientation === 'center' 
+      ? `linear-gradient(135deg, ${colors.gray50} 0%, ${colors.white} 100%)`
+      : 'transparent'
+  };
+  border-radius: ${({ $orientation }) => $orientation === 'center' ? '16px' : '0'};
+  border: ${({ $orientation }) => 
+    $orientation === 'center' 
+      ? `1px solid ${colors.gray200}`
+      : 'none'
+  };
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: ${spacing[6]};
+    gap: ${spacing[4]};
+    padding: ${spacing[2]} 0;
   }
 `;
 
@@ -46,6 +65,8 @@ const ImageWrapper = styled.div<{ $orientation: 'left' | 'right' | 'center' }>`
         return 1;
     }
   }};
+  max-width: ${({ $orientation }) => $orientation === 'center' ? '400px' : 'none'};
+  margin: ${({ $orientation }) => $orientation === 'center' ? '0 auto' : '0'};
   
   &:hover {
     transform: translateY(-4px);
@@ -54,6 +75,8 @@ const ImageWrapper = styled.div<{ $orientation: 'left' | 'right' | 'center' }>`
   
   @media (max-width: 768px) {
     order: 1;
+    max-width: none;
+    margin: 0;
   }
 `;
 
@@ -61,8 +84,13 @@ const Image = styled.img`
   width: 100%;
   height: auto;
   object-fit: cover;
-  aspect-ratio: 16/10;
+  aspect-ratio: 4/3;
   display: block;
+  transition: transform 0.3s ease;
+  
+  ${ImageWrapper}:hover & {
+    transform: scale(1.02);
+  }
 `;
 
 const ContentWrapper = styled.div<{ $orientation: 'left' | 'right' | 'center' }>`
@@ -78,37 +106,47 @@ const ContentWrapper = styled.div<{ $orientation: 'left' | 'right' | 'center' }>
         return 2;
     }
   }};
+  text-align: ${({ $orientation }) => $orientation === 'center' ? 'center' : 'left'};
+  max-width: ${({ $orientation }) => $orientation === 'center' ? '600px' : 'none'};
+  margin: ${({ $orientation }) => $orientation === 'center' ? '0 auto' : '0'};
   
   @media (max-width: 768px) {
     order: 2;
+    text-align: left;
+    max-width: none;
+    margin: 0;
   }
 `;
 
 const TitleWrapper = styled.div`
-  margin-bottom: ${spacing[6]};
+  margin-bottom: ${spacing[4]};
 `;
 
 const Title = styled(Typography)`
-  margin-bottom: ${spacing[4]} !important;
+  margin-bottom: ${spacing[3]} !important;
+  line-height: 1.2;
 `;
 
-const Divider = styled.div`
-  width: 60px;
-  height: 2px;
-  background-color: ${colors.primary};
-  border-radius: 1px;
-  margin-bottom: ${spacing[4]};
+const Divider = styled.div<{ $orientation?: 'left' | 'right' | 'center' }>`
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, ${colors.primary} 0%, ${colors.accent} 100%);
+  border-radius: 2px;
+  margin-bottom: ${spacing[3]};
+  margin-left: ${({ $orientation }) => $orientation === 'center' ? 'auto' : '0'};
+  margin-right: ${({ $orientation }) => $orientation === 'center' ? 'auto' : '0'};
 `;
 
 const TextContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${spacing[4]};
+  gap: ${spacing[3]};
 `;
 
 const Text = styled(Typography)`
-  font-size: ${designValues.fontSize.lg};
-  line-height: 1.7;
+  font-size: ${designValues.fontSize.base};
+  line-height: 1.6;
+  color: ${colors.textSecondary};
 `;
 
 const Highlight = styled.strong`
@@ -146,7 +184,7 @@ export const ImageText: React.FC<ImageTextProps> = ({
           <Title variant="h2" color="primary">
             {title}
           </Title>
-          <Divider />
+          <Divider $orientation={orientation} />
         </TitleWrapper>
         
         <TextContent>

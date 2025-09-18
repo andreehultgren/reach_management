@@ -407,10 +407,10 @@ export default function LandingPage() {
 
 			<PageSection variant="cta" align="center">
 				<div style={{ maxWidth: 800, margin: '0 auto' }}>
-					<Typography variant="h3" color="primary" style={{ marginBottom: spacing[6] }}>
+					<Typography variant="h3" style={{ marginBottom: spacing[6], color: 'white' }}>
 						Hör av dig så når vi längre tillsammans
 					</Typography>
-					<Typography variant="body1" color="secondary" style={{ marginBottom: spacing[8] }}>
+					<Typography variant="body1" style={{ marginBottom: spacing[8], color: 'white' }}>
 						Har du ett projekt på gång eller vill du veta mer om hur vi kan
 						hjälpa dig? Tveka inte att höra av dig.
 					</Typography>
