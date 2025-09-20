@@ -1,18 +1,50 @@
 import { createFileRoute } from "@tanstack/react-router";
 import React from "react";
+import { styled } from "styled-components";
 
 import { 
 	Typography, 
 	Button, 
 	PageSection, 
 	HeroSection,
-	ImageText
+	ImageText,
+	Accordion
 } from "../ui";
 import { ConsultantScroller } from "../ui/components/molecules/ConsultantScroller/ConsultantScroller";
 import { colors, spacing } from "../ui/design-tokens";
 import { ArrowForward } from "@mui/icons-material";
 import ContactUs from "../components/ContactUs";
 // Removed ContactForm import - using simple email display instead
+
+const ServicesGrid = styled.div`
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: ${spacing[6]};
+	max-width: 1000px;
+	margin: 0 auto;
+	
+	@media (max-width: 768px) {
+		display: none;
+	}
+`;
+
+const MobileAccordion = styled.div`
+	display: none;
+	max-width: 600px;
+	margin: 0 auto;
+	
+	@media (max-width: 768px) {
+		display: block;
+		
+		> div {
+			margin-bottom: ${spacing[3]};
+			
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+`;
 
 
 
@@ -96,13 +128,8 @@ export default function LandingPage() {
 					</Typography>
 				</div>
 					
-					<div style={{ 
-						display: 'grid', 
-						gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-						gap: spacing[6],
-						maxWidth: 1000, 
-						margin: '0 auto' 
-					}}>
+					{/* Desktop Grid Layout */}
+					<ServicesGrid>
 						{SERVICES.map((service) => (
 							<div key={service.title} style={{
 								backgroundColor: colors.white,
@@ -128,7 +155,25 @@ export default function LandingPage() {
 								</Typography>
 							</div>
 						))}
-					</div>
+					</ServicesGrid>
+
+					{/* Mobile Accordion Layout */}
+					<MobileAccordion>
+						{SERVICES.map((service) => (
+							<Accordion
+								key={service.title}
+								title={service.title}
+								defaultExpanded={false}
+							>
+								<Typography variant="body1" color="secondary" style={{ 
+									lineHeight: 1.6,
+									fontSize: '1rem'
+								}}>
+									{service.description}
+								</Typography>
+							</Accordion>
+						))}
+					</MobileAccordion>
 					
 					{/* Call to Action */}
 					<div style={{ textAlign: 'center', marginTop: spacing[8] }}>
