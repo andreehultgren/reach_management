@@ -19,9 +19,10 @@ const ScrollerContainer = styled.div<{ $variant?: 'default' | 'showcase' | 'grid
         gap: ${spacing[6]};
       `;
       case 'showcase': return `
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        align-items: flex-start;
         gap: ${spacing[6]};
+        justify-content: center;
       `;
       default: return `
         flex-direction: row;
@@ -59,7 +60,32 @@ const ScrollerContainer = styled.div<{ $variant?: 'default' | 'showcase' | 'grid
           gap: ${spacing[4]};
         `;
         case 'showcase': return `
+          flex-direction: row;
+          align-items: flex-start;
           gap: ${spacing[4]};
+          justify-content: center;
+          overflow-x: auto;
+          padding: ${spacing[2]} ${spacing[4]};
+          scroll-snap-type: x mandatory;
+          scroll-padding: 0 ${spacing[4]};
+          
+          &::-webkit-scrollbar {
+            height: 6px;
+          }
+          
+          &::-webkit-scrollbar-track {
+            background: ${colors.gray100};
+            border-radius: 3px;
+          }
+          
+          &::-webkit-scrollbar-thumb {
+            background: ${colors.gray300};
+            border-radius: 3px;
+            
+            &:hover {
+              background: ${colors.gray400};
+            }
+          }
         `;
         default: return `
           gap: ${spacing[4]};
@@ -76,7 +102,32 @@ const ScrollerContainer = styled.div<{ $variant?: 'default' | 'showcase' | 'grid
           gap: ${spacing[4]};
         `;
         case 'showcase': return `
+          flex-direction: row;
+          align-items: flex-start;
           gap: ${spacing[4]};
+          justify-content: center;
+          overflow-x: auto;
+          padding: ${spacing[2]} ${spacing[4]};
+          scroll-snap-type: x mandatory;
+          scroll-padding: 0 ${spacing[4]};
+          
+          &::-webkit-scrollbar {
+            height: 6px;
+          }
+          
+          &::-webkit-scrollbar-track {
+            background: ${colors.gray100};
+            border-radius: 3px;
+          }
+          
+          &::-webkit-scrollbar-thumb {
+            background: ${colors.gray300};
+            border-radius: 3px;
+            
+            &:hover {
+              background: ${colors.gray400};
+            }
+          }
         `;
         default: return `
           flex-direction: column;
@@ -108,18 +159,18 @@ const ConsultantItem = styled.div<{ $variant?: 'default' | 'showcase' | 'grid' }
   }};
   
   @media (max-width: ${breakpoints.sm}) {
-    width: 100%;
-    max-width: none;
+    width: 300px;
+    max-width: 300px;
+    flex-shrink: 0;
   }
 `;
 
 export interface ConsultantData {
   name: string;
-  title: string;
+  roles?: string[];
   image: string;
   imageAlt?: string;
   experience: string;
-  skills: string[];
   certifications: Array<{
     name: string;
     year: string;
@@ -148,10 +199,9 @@ export const ConsultantScroller: React.FC<ConsultantScrollerProps> = ({
         <ConsultantItem key={consultant.name} $variant={variant}>
           <ConsultantCard
             name={consultant.name}
-            title={consultant.title}
+            roles={consultant.roles}
             image={consultant.image}
             imageAlt={consultant.imageAlt}
-            skills={consultant.skills}
             certifications={consultant.certifications}
             variant={consultant.variant}
             email={consultant.email}

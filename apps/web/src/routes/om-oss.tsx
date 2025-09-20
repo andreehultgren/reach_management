@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { styled } from "styled-components";
 
 import { 
 	Typography, 
@@ -6,8 +7,46 @@ import {
 	PageSection, 
 	HeroSection
 } from "../ui";
-import { colors, spacing } from "../ui/design-tokens";
+import { colors, spacing, breakpoints } from "../ui/design-tokens";
 import ContactUs from "../components/ContactUs";
+
+const ContentContainer = styled.div`
+	max-width: 800px;
+	margin: 0 auto;
+	width: 100%;
+	padding: 0 16px;
+	box-sizing: border-box;
+`;
+
+const FlexRow = styled.div`
+	display: flex;
+	flex-direction: row;
+	gap: ${spacing[6]};
+	align-items: center;
+	width: 100%;
+	box-sizing: border-box;
+	
+	@media (max-width: ${breakpoints.sm}) {
+		flex-direction: column;
+		text-align: center;
+		gap: ${spacing[4]};
+	}
+`;
+
+const ServiceItem = styled.div`
+	display: flex;
+	flex-direction: row;
+	gap: ${spacing[6]};
+	align-items: flex-start;
+	width: 100%;
+	box-sizing: border-box;
+	
+	@media (max-width: ${breakpoints.sm}) {
+		flex-direction: column;
+		text-align: center;
+		gap: ${spacing[4]};
+	}
+`;
 
 export const Route = createFileRoute("/om-oss")({
 	component: LandingPage,
@@ -15,31 +54,31 @@ export const Route = createFileRoute("/om-oss")({
 
 export default function LandingPage() {
 	return (
-		<div>
+		<div style={{ width: '100%', overflow: 'hidden' }}>
 			<HeroSection
 				title="Om oss"
 				subtitle="Vi når längre tillsammans"
 				backgroundImage="/assets/Stairs_desktop.jpg"
+				notFullHeight
 			/>
 			<PageSection variant="feature" align="center">
-				<div style={{ maxWidth: 800, margin: '0 auto' }}>
+				<ContentContainer>
 					<div style={{ textAlign: 'center', marginBottom: spacing[8] }}>
 						<Typography variant="h2" color="primary" style={{ marginBottom: spacing[4] }}>
 							Vi når längre tillsammans
 						</Typography>
-						<div style={{ 
-							width: 80, 
-							height: 2, 
-							backgroundColor: colors.primary,
-							borderRadius: "1px",
-							margin: '0 auto',
-							marginBottom: spacing[6]
-						}} />
-					</div>
+							<div style={{ 
+								width: 200, 
+								height: 3, 
+								background: `linear-gradient(90deg, ${colors.primary} 0%, ${colors.accent} 100%)`,
+								borderRadius: "2px",
+								marginBottom: spacing[6]
+							}} />
+						</div>
 					<Typography variant="body1" color="secondary" style={{ 
 						fontSize: "1.1rem", 
 						lineHeight: 1.7, 
-						textAlign: "center",
+						textAlign: "left",
 						marginBottom: spacing[6]
 					}}>
 						Reach Management föddes ur en övertygelse: att framgångsrika
@@ -50,28 +89,27 @@ export default function LandingPage() {
 					<Typography variant="body1" color="secondary" style={{ 
 						fontSize: "1.1rem", 
 						lineHeight: 1.7, 
-						textAlign: "center" 
+						textAlign: "left" 
 					}}>
 						För oss handlar projektledning inte bara om att leverera i tid och
 						inom budget. Det handlar om att nå längre tillsammans - att skapa
 						resultat som ger värde både här och nu och på lång sikt.
 					</Typography>
-				</div>
+				</ContentContainer>
 			</PageSection>
 			<PageSection variant="testimonial" align="center">
-				<div style={{ maxWidth: 800, margin: '0 auto' }}>
+				<ContentContainer>
 					<div style={{ textAlign: 'center', marginBottom: spacing[8] }}>
 						<Typography variant="h2" color="primary" style={{ marginBottom: spacing[4] }}>
 							Vad betyder Reach Management
 						</Typography>
 						<div style={{ 
-							width: 80, 
-							height: 2, 
-							backgroundColor: colors.primary,
-							borderRadius: "1px",
-							margin: '0 auto',
-							marginBottom: spacing[6]
-						}} />
+						width: 200, 
+						height: 3, 
+						background: `linear-gradient(90deg, ${colors.primary} 0%, ${colors.accent} 100%)`,
+						borderRadius: "2px",
+						marginBottom: spacing[6]
+					}} />
 					</div>
 					
 					<div style={{ 
@@ -81,11 +119,11 @@ export default function LandingPage() {
 						boxShadow: '0 20px 40px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.06)',
 						border: `1px solid ${colors.gray200}`,
 					}}>
-						<Typography variant="h5" color="primary" style={{ marginBottom: spacing[6], textAlign: "center" }}>
+						<Typography variant="h5" color="primary" style={{ marginBottom: spacing[6], textAlign: "left" }}>
 							Namnet Reach Management symboliserar vårt sätt att arbeta:
 						</Typography>
 						<div style={{ display: 'flex', flexDirection: 'column', gap: spacing[8] }}>
-							<div style={{ display: 'flex', flexDirection: 'row', gap: spacing[6], alignItems: 'center' }}>
+							<FlexRow>
 								<div style={{
 									width: 80,
 									height: 80,
@@ -110,9 +148,9 @@ export default function LandingPage() {
 										det förväntade och skapa lösningar som håller över tid.
 									</Typography>
 								</div>
-							</div>
+							</FlexRow>
 							
-							<div style={{ display: 'flex', flexDirection: 'row', gap: spacing[6], alignItems: 'center' }}>
+							<FlexRow>
 								<div style={{
 									width: 80,
 									height: 80,
@@ -137,7 +175,7 @@ export default function LandingPage() {
 										samordna och driva projekt framåt.
 									</Typography>
 								</div>
-							</div>
+							</FlexRow>
 						</div>
 						
 						<div style={{ 
@@ -158,35 +196,32 @@ export default function LandingPage() {
 								WebkitTextFillColor: "transparent",
 								fontWeight: 700,
 							}}>
-								Reach Management - Vi når längre tillsammans
+								Reach Management<br/>Vi når längre tillsammans
 							</Typography>
 						</div>
 					</div>
-				</div>
+				</ContentContainer>
 			</PageSection>
 			<PageSection variant="feature" align="center">
-				<div style={{ maxWidth: 800, margin: '0 auto' }}>
-					<div style={{ display: 'flex', flexDirection: 'column', gap: spacing[8] }}>
+				<ContentContainer>
+					<div style={{ display: 'flex', flexDirection: 'column', gap: spacing[1] }}>
 						<div style={{ textAlign: 'center', marginBottom: spacing[8] }}>
 							<Typography variant="h2" color="primary" style={{ marginBottom: spacing[4] }}>
 								Vilka vi är
 							</Typography>
 							<div style={{ 
-								width: 80, 
-								height: 2, 
-								backgroundColor: colors.primary,
-								borderRadius: "1px",
-								margin: '0 auto',
-								marginBottom: spacing[6]
-							}} />
+						width: 200, 
+						height: 3, 
+						background: `linear-gradient(90deg, ${colors.primary} 0%, ${colors.accent} 100%)`,
+						borderRadius: "2px",
+					}} />
 						</div>
-						
-						<Typography variant="h5" color="primary" style={{ textAlign: "center", marginBottom: spacing[8] }}>
+						<Typography variant="h5" color="primary" style={{ textAlign: "left", marginBottom: spacing[8] }}>
 							Reach Management är ett konsultföretag inom bygg- och
 							fastighetsbranschen. Vi erbjuder tjänster inom:
 						</Typography>
 						
-						<div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
+						<div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
 							{[
 								{ title: "Projektledning", desc: "struktur och tydlighet i hela processen" },
 								{ title: "Projekteringsledning", desc: "samordning och kvalitetssäkring från start till mål" },
@@ -195,12 +230,14 @@ export default function LandingPage() {
 							].map((service, index) => (
 								<div key={service.title} style={{ 
 									backgroundColor: colors.gray50, 
-									padding: spacing[8], 
+									padding: spacing[4], 
 									borderRadius: "1rem",
 									border: `1px solid ${colors.gray200}`,
 									transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+									width: '100%',
+									boxSizing: 'border-box'
 								}}>
-									<div style={{ display: 'flex', flexDirection: 'row', gap: spacing[6], alignItems: 'flex-start' }}>
+									<ServiceItem>
 										<div style={{
 											width: 40,
 											height: 40,
@@ -225,7 +262,7 @@ export default function LandingPage() {
 												{service.desc}
 											</Typography>
 										</div>
-									</div>
+									</ServiceItem>
 								</div>
 							))}
 						</div>
@@ -234,6 +271,7 @@ export default function LandingPage() {
 							backgroundColor: colors.primaryLight, 
 							padding: spacing[8], 
 							borderRadius: "1rem",
+							marginTop: spacing[2],
 							border: `1px solid ${colors.primary}`,
 							textAlign: "center"
 						}}>
@@ -247,24 +285,22 @@ export default function LandingPage() {
 							</Typography>
 						</div>
 					</div>
-				</div>
+				</ContentContainer>
 			</PageSection>
 
 			<PageSection variant="testimonial" align="center">
-				<div style={{ maxWidth: 800, margin: '0 auto' }}>
+				<ContentContainer>
 					<div style={{ display: 'flex', flexDirection: 'column', gap: spacing[8] }}>
-						<div style={{ textAlign: 'center', marginBottom: spacing[8] }}>
+						<div style={{ textAlign: 'center', marginBottom: spacing[0] }}>
 							<Typography variant="h2" color="primary" style={{ marginBottom: spacing[4] }}>
 								Vårt erbjudande
 							</Typography>
 							<div style={{ 
-								width: 80, 
-								height: 2, 
-								backgroundColor: colors.primary,
-								borderRadius: "1px",
-								margin: '0 auto',
-								marginBottom: spacing[6]
-							}} />
+						width: 200, 
+						height: 3, 
+						background: `linear-gradient(90deg, ${colors.primary} 0%, ${colors.accent} 100%)`,
+						borderRadius: "2px",
+					}} />
 						</div>
 						
 						<div style={{ 
@@ -287,24 +323,22 @@ export default function LandingPage() {
 							</Typography>
 						</div>
 					</div>
-				</div>
+				</ContentContainer>
 			</PageSection>
 
 			<PageSection variant="feature" align="center">
-				<div style={{ maxWidth: 800, margin: '0 auto' }}>
+				<ContentContainer>
 					<div style={{ display: 'flex', flexDirection: 'column', gap: spacing[8] }}>
-						<div style={{ textAlign: 'center', marginBottom: spacing[8] }}>
+						<div style={{ textAlign: 'center', marginBottom: spacing[2] }}>
 							<Typography variant="h2" color="primary" style={{ marginBottom: spacing[4] }}>
 								Därför Reach Management
 							</Typography>
 							<div style={{ 
-								width: 80, 
-								height: 2, 
-								backgroundColor: colors.primary,
-								borderRadius: "1px",
-								margin: '0 auto',
-								marginBottom: spacing[6]
-							}} />
+						width: 200, 
+						height: 3, 
+						background: `linear-gradient(90deg, ${colors.primary} 0%, ${colors.accent} 100%)`,
+						borderRadius: "2px",
+					}} />
 						</div>
 						
 						<div style={{ 
@@ -326,12 +360,12 @@ export default function LandingPage() {
 							</Typography>
 						</div>
 					</div>
-				</div>
+				</ContentContainer>
 			</PageSection>
 
 			<PageSection variant="testimonial" align="center">
-				<div style={{ maxWidth: 800, margin: '0 auto' }}>
-					<div style={{ display: 'flex', flexDirection: 'column', gap: spacing[8] }}>
+				<ContentContainer>
+					<div style={{ display: 'flex', flexDirection: 'column', gap: spacing[1] }}>
 						<Typography variant="h2" color="primary" style={{ textAlign: 'center', marginBottom: spacing[8] }}>
 							Våra kärnvärden
 						</Typography>
@@ -362,51 +396,12 @@ export default function LandingPage() {
 							</Accordion>
 
 						</div>
-						
-						{/* Quality and Environment Policies */}
-						<div style={{ marginTop: spacing[8] }}>
-							<Typography variant="h3" color="primary" style={{ textAlign: 'center', marginBottom: spacing[6] }}>
-								Våra policys
-							</Typography>
-							<div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
-								<div style={{ 
-									flex: 1, 
-									backgroundColor: colors.white, 
-									padding: spacing[8], 
-									borderRadius: "0.75rem",
-									border: `1px solid ${colors.gray200}`,
-									boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
-								}}>
-									<Typography variant="h4" color="primary" style={{ marginBottom: spacing[4] }}>
-										Kvalitetspolicy
-									</Typography>
-									<Typography variant="body2" color="secondary" style={{ fontStyle: "italic" }}>
-										Vi arbetar kontinuerligt med att förbättra våra processer och säkerställa högsta kvalitet i alla våra leveranser.
-									</Typography>
-								</div>
-								<div style={{ 
-									flex: 1, 
-									backgroundColor: colors.white, 
-									padding: spacing[8], 
-									borderRadius: "0.75rem",
-									border: `1px solid ${colors.gray200}`,
-									boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
-								}}>
-									<Typography variant="h4" color="primary" style={{ marginBottom: spacing[4] }}>
-										Miljöpolicy
-									</Typography>
-									<Typography variant="body2" color="secondary" style={{ fontStyle: "italic" }}>
-										Hållbarhet och miljöansvar är centralt i vårt arbetssätt. Vi strävar efter att minimera miljöpåverkan i alla våra projekt.
-									</Typography>
-								</div>
-							</div>
-						</div>
 					</div>
-				</div>
+				</ContentContainer>
 			</PageSection>
 
 			<PageSection variant="cta" align="center">
-				<div style={{ maxWidth: 800, margin: '0 auto' }}>
+				<ContentContainer>
 					<Typography variant="h3" style={{ marginBottom: spacing[6], color: 'white' }}>
 						Hör av dig så når vi längre tillsammans
 					</Typography>
@@ -414,8 +409,8 @@ export default function LandingPage() {
 						Har du ett projekt på gång eller vill du veta mer om hur vi kan
 						hjälpa dig? Tveka inte att höra av dig.
 					</Typography>
-					<ContactUs />
-				</div>
+					<ContactUs  />
+				</ContentContainer>
 			</PageSection>
 		</div>
 	);

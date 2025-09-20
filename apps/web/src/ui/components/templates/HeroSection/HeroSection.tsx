@@ -8,12 +8,15 @@ const HeroContainer = styled.div<{
   $backgroundImage?: string;
   $height?: string;
   $overlay?: boolean;
+  $notFullHeight?: boolean;
 }>`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: ${({ $height }) => $height || '100vh'};
+  min-height: ${({ $height, $notFullHeight }) => 
+    $notFullHeight ? '500px' : ($height || '100vh')
+  };
   background: ${({ $backgroundImage }) => 
     $backgroundImage 
       ? `linear-gradient(135deg, ${colors.primary}CC 0%, ${colors.primaryLight}99 100%), url(${$backgroundImage})`
@@ -132,6 +135,7 @@ export interface HeroSectionProps {
   description?: string;
   backgroundImage?: string;
   height?: string;
+  notFullHeight?: boolean;
   actions?: HeroAction[];
   maxWidth?: string;
   className?: string;
@@ -143,6 +147,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   description,
   backgroundImage,
   height,
+  notFullHeight,
   actions = [],
   maxWidth,
   className,
@@ -151,6 +156,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     <HeroContainer
       $backgroundImage={backgroundImage}
       $height={height}
+      $notFullHeight={notFullHeight}
       className={className}
     >
       <HeroContent $maxWidth={maxWidth}>

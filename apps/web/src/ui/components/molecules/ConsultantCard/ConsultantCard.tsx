@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import { colors, spacing, breakpoints } from '../../../design-tokens';
 import { Typography } from '../../atoms/Typography/Typography';
 import { Button } from '../../atoms/Button/Button';
+import { Email, Phone } from '@mui/icons-material';
 
 const CardContainer = styled.div<{ $variant?: 'default' | 'featured' | 'minimal' }>`
   width: 100%;
@@ -118,7 +119,6 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: ${spacing[2]};
 `;
 
 const ConsultantName = styled(Typography)`
@@ -135,21 +135,25 @@ const Title = styled(Typography)`
 `;
 
 const SkillsContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: ${spacing[1]};
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: ${spacing[2]};
   margin: ${spacing[2]} 0;
+  width: 100%;
 `;
 
 const SkillTag = styled.span`
   background: ${colors.gray100};
   color: ${colors.textPrimary};
-  padding: ${spacing[1]} ${spacing[2]};
+  padding: ${spacing[2]} ${spacing[3]};
   border-radius: 12px;
   font-size: 0.75rem;
   font-weight: 500;
   border: 1px solid ${colors.gray200};
   transition: all 0.2s ease;
+  width: 100%;
+  text-align: center;
+  display: block;
   
   &:hover {
     background: ${colors.primaryLight};
@@ -208,9 +212,6 @@ const CertificationYear = styled(Typography)`
 const Actions = styled.div`
   display: flex;
   gap: ${spacing[2]};
-  margin-top: ${spacing[3]};
-  padding-top: ${spacing[3]};
-  border-top: 1px solid ${colors.gray200};
 `;
 
 const ContactLinks = styled.div`
@@ -218,6 +219,21 @@ const ContactLinks = styled.div`
   flex-direction: column;
   gap: ${spacing[2]};
   width: 100%;
+`;
+
+const ContactIcon = styled.div`
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${colors.primary};
+  flex-shrink: 0;
+  
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const ContactLink = styled.a`
@@ -233,22 +249,19 @@ const ContactLink = styled.a`
   font-size: 0.875rem;
   font-weight: 500;
   transition: all 0.2s ease;
+  min-height: 44px;
   
   &:hover {
     background: ${colors.primaryLight};
     border-color: ${colors.primary};
     color: ${colors.primary};
     transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
-`;
-
-const ContactIcon = styled.div`
-  width: 16px;
-  height: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
+  
+  &:hover ${ContactIcon} {
+    color: ${colors.primary};
+  }
 `;
 
 const ViewProfileButton = styled(Button)`
@@ -257,10 +270,9 @@ const ViewProfileButton = styled(Button)`
 
 export interface ConsultantCardProps {
   name: string;
-  title: string;
+  roles?: string[];
   image: string;
   imageAlt?: string;
-  skills: string[];
   certifications: Array<{
     name: string;
     year: string;
@@ -275,10 +287,9 @@ export interface ConsultantCardProps {
 
 export const ConsultantCard: React.FC<ConsultantCardProps> = ({
   name,
-  title,
+  roles,
   image,
   imageAlt,
-  skills,
   certifications,
   variant = 'default',
   email,
@@ -301,35 +312,23 @@ export const ConsultantCard: React.FC<ConsultantCardProps> = ({
             <ConsultantName variant="h4" color="primary">
               {name}
             </ConsultantName>
-            <Title variant="body2">
-              {title}
+            {roles && roles.length > 0 && (<Title variant="body2">
+            <SkillsContainer>
+              {roles.map((role) => (
+                <SkillTag key={role}>{role}</SkillTag>
+              ))}
+            </SkillsContainer>
             </Title>
+            )}
           </div>
         </Header>
-        
-        {skills.length > 0 && (
-          <div>
-            <Typography variant="caption" color="secondary" style={{ marginBottom: spacing[1], display: 'block' }}>
-              Skills
-            </Typography>
-            <SkillsContainer>
-              {skills.slice(0, 6).map((skill) => (
-                <SkillTag key={skill}>{skill}</SkillTag>
-              ))}
-              {skills.length > 6 && (
-                <SkillTag>+{skills.length - 6} more</SkillTag>
-              )}
-            </SkillsContainer>
-          </div>
-        )}
-        
         {certifications.length > 0 && (
           <div>
             <Typography variant="caption" color="secondary" style={{ marginBottom: spacing[1], display: 'block' }}>
-              Certifications
+              Certifieringar
             </Typography>
             <CertificationsContainer>
-              {certifications.slice(0, 2).map((cert) => (
+              {certifications.slice(0, 3).map((cert) => (
                 <CertificationItem key={`${cert.name}-${cert.year}`}>
                   <CertificationIcon>
                     ✓
@@ -344,7 +343,7 @@ export const ConsultantCard: React.FC<ConsultantCardProps> = ({
                   </CertificationText>
                 </CertificationItem>
               ))}
-              {certifications.length > 2 && (
+              {certifications.length > 3 && (
                 <Typography variant="caption" color="secondary" style={{ textAlign: 'center' }}>
                   +{certifications.length - 2} more certifications
                 </Typography>
@@ -359,13 +358,17 @@ export const ConsultantCard: React.FC<ConsultantCardProps> = ({
               <ContactLinks>
                 {email && (
                   <ContactLink href={`mailto:${email}`}>
-                    <ContactIcon>✉</ContactIcon>
+                    <ContactIcon>
+                      <Email />
+                    </ContactIcon>
                     {email}
                   </ContactLink>
                 )}
                 {phone && (
                   <ContactLink href={`tel:${phone}`}>
-                    <ContactIcon>📞</ContactIcon>
+                    <ContactIcon>
+                      <Phone />
+                    </ContactIcon>
                     {phone}
                   </ContactLink>
                 )}

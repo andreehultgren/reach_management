@@ -47,7 +47,7 @@ const AccordionHeader = styled.button<{ $expanded: boolean }>`
     top: 0;
     bottom: 0;
     width: 4px;
-    background: ${({ $expanded }) => $expanded ? colors.primary : 'transparent'};
+    background: ${({ $expanded }) => $expanded ? colors.accent : 'transparent'};
     transition: all 0.3s ease-in-out;
   }
   

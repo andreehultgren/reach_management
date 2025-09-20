@@ -91,7 +91,8 @@ export default function LandingPage() {
 			<HeroSection
 				title="Jobba hos oss"
 				subtitle="Bli en del av vårt team och hjälp oss att nå längre tillsammans"
-				backgroundImage="/assets/buildings_sunset_desktop.jpg"
+				backgroundImage="/stockholm.jpg"
+				notFullHeight
 			/>
 			
 			{/* Main Content Section */}
@@ -114,11 +115,11 @@ export default function LandingPage() {
 							Vad vi värderar
 						</Typography>
 						<div style={{ 
-							width: 80, 
+							width: 200, 
 							height: 3, 
 							background: `linear-gradient(90deg, ${COLORS.primary} 0%, ${COLORS.accent} 100%)`,
 							borderRadius: "2px",
-							margin: '0 auto'
+							margin: '12px 0px'
 						}} />
 					</div>
 					

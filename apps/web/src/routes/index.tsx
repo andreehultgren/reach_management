@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import React from "react";
 import { styled } from "styled-components";
 
@@ -75,7 +75,6 @@ export const Route = createFileRoute("/")({
 
 export default function LandingPage() {
 	const [showContactDialog, setShowContactDialog] = React.useState(false);
-	const navigate = useNavigate();
 
 	return (
 		<div>
@@ -89,7 +88,9 @@ export default function LandingPage() {
 						text: "Läs mer om våra tjänster",
 						variant: "primary",
 						size: "large",
-						onClick: () => navigate({ to: '/tjanster' })
+						onClick: () => {
+							window.location.href = '/tjanster';
+						}
 					}
 				]}
 			/>
@@ -181,7 +182,9 @@ export default function LandingPage() {
 							variant="primary"
 							size="large"
 							style={{ display: 'flex', alignItems: 'center', gap: spacing[2] }}
-							onClick={() => navigate({ to: '/tjanster' })}
+							onClick={() => {
+								window.location.href = '/tjanster';
+							}}
 						>
 							Se alla våra tjänster
 							<ArrowForward />
@@ -226,24 +229,19 @@ export default function LandingPage() {
 					variant="showcase"
 					consultants={[{
 						name: "Michael Hultgren",
-						title: "Senior Byggprojektledare",
+						roles: [
+							"Projektledare",
+							"Projekteringsledare", 
+							"Byggledare",
+							"KA enligt PBL"
+						],
 						image: "/michael.jpg",
 						experience: "10+ års erfarenhet",
-						skills: [
-							"Projektledning",
-							"Byggledning", 
-							"PBL Kontrollansvarig",
-							"Kvalitetskontroll",
-							"Hållbara bygglösningar",
-							"Teamledning"
-						],
 						certifications: [
-							{ name: "PBL Kontrollansvarig", year: "2023", issuer: "Boverket" },
-							{ name: "ISO 9001 Lead Auditor", year: "2022", issuer: "DNV" },
-							{ name: "PMP Certification", year: "2021", issuer: "PMI" }
+							{ name: "Kontrollansvarig enligt PBL", year: "2025", issuer: "RISE" }
 						],
 						variant: "featured",
-						email: "info@reachmanagement.se",
+						email: "michael.hultgren@reachmanagement.se",
 						phone: "+46 70 108 10 22"
 					}]}
 				/>
@@ -310,7 +308,7 @@ export default function LandingPage() {
 							gap: spacing[2]
 						}}
 						onClick={() => {
-							navigate({ to: '/tjanster' });
+							window.location.href = '/tjanster';
 						}}
 					>
 						Se våra tjänster
@@ -319,44 +317,51 @@ export default function LandingPage() {
 				</div>
 			</PageSection>
 
-			{/* Contact Section */}
+			{/* About Us Section */}
 			<PageSection variant="testimonial" align="center">
-				<div id="contact-section" style={{ textAlign: 'center', marginBottom: spacing[8] }}>
+				<div style={{ textAlign: 'center', marginBottom: spacing[8] }}>
 					<Typography variant="h2" color="primary" style={{ marginBottom: spacing[4] }}>
-						Kontakta oss
+						Lär känna oss bättre
 					</Typography>
 					<div style={{ 
 						width: 200, 
 						height: 3, 
 						background: `linear-gradient(90deg, ${colors.primary} 0%, ${colors.accent} 100%)`,
 						borderRadius: "2px",
-						marginBottom: spacing[6]
+						marginBottom: spacing[6],
+						marginLeft: 0
 					}} />
 					<Typography variant="h5" color="secondary" style={{ 
-						maxWidth: 700, 
+						maxWidth: 600, 
 						margin: '12px auto',
 						lineHeight: 1.6
 					}}>
-						Har du frågor eller vill diskutera ditt nästa projekt? Vi finns här
-						för att hjälpa dig vidare. Skicka oss ett meddelande så återkommer vi snart!
+						Upptäck vår historia, våra värderingar och hur vi kan hjälpa dig att nå dina mål inom bygg- och fastighetsbranschen.
 					</Typography>
 				</div>
 				
-        {/* Contact Information */}
-        <Typography variant="h5" color="secondary" style={{ 
-          textAlign: 'center',
-          marginTop: spacing[4]
-        }}>
-          <a href="mailto:info@reachmanagement.se" style={{ 
-            color: 'inherit',
-            textDecoration: 'none',
-            fontFamily: 'inherit',
-            fontWeight: 'inherit'
-          }}>
-            info@reachmanagement.se
-          </a>
-        </Typography>
+				<div style={{ textAlign: 'center' }}>
+					<Button
+						variant="primary"
+						size="large"
+						onClick={() => {window.location.href = '/om-oss'}}
+						style={{ 
+							fontSize: "1.2rem",
+							fontWeight: 600,
+							padding: `${spacing[4]} ${spacing[8]}`,
+							borderRadius: "1rem",
+							display: 'flex',
+							alignItems: 'center',
+							gap: spacing[2],
+							margin: '0 auto'
+						}}
+					>
+						Läs mer om oss
+						<ArrowForward />
+					</Button>
+				</div>
 			</PageSection>
+
 			{/* ContactUs dialog */}
 			{showContactDialog && (
 				<ContactUs 
