@@ -83,8 +83,7 @@ const ImageWrapper = styled.div<{ $orientation: 'left' | 'right' | 'center' }>`
 const Image = styled.img`
   width: 100%;
   height: auto;
-  object-fit: cover;
-  aspect-ratio: 4/3;
+  object-fit: contain;
   display: block;
   transition: transform 0.3s ease;
   
@@ -128,7 +127,7 @@ const Title = styled(Typography)`
 `;
 
 const Divider = styled.div<{ $orientation?: 'left' | 'right' | 'center' }>`
-  width: 50px;
+  width: 200px;
   height: 3px;
   background: linear-gradient(90deg, ${colors.primary} 0%, ${colors.accent} 100%);
   border-radius: 2px;

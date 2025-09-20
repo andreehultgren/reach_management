@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import React from "react";
 import { styled } from "styled-components";
 
@@ -18,7 +18,7 @@ import ContactUs from "../components/ContactUs";
 
 const ServicesGrid = styled.div`
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	grid-template-columns: repeat(2, 1fr);
 	gap: ${spacing[6]};
 	max-width: 1000px;
 	margin: 0 auto;
@@ -62,7 +62,7 @@ const SERVICES = [
 		description: "På plats leder vi entreprenörerna och övervakar tidplan, ekonomi och säkerhet för att säkerställa ett framgångsrikt projekt."
 	},
 	{
-		title: "Kontrollansvarig (KA)",
+		title: "Kontrollansvarig enligt PBL",
 		description: "Som certifierade kontrollansvariga enligt PBL säkerställer vi att lagkrav följs och att projektet godkänns av byggnadsnämnden."
 	}
 ] as const;
@@ -75,6 +75,7 @@ export const Route = createFileRoute("/")({
 
 export default function LandingPage() {
 	const [showContactDialog, setShowContactDialog] = React.useState(false);
+	const navigate = useNavigate();
 
 	return (
 		<div>
@@ -88,7 +89,7 @@ export default function LandingPage() {
 						text: "Läs mer om våra tjänster",
 						variant: "primary",
 						size: "large",
-						onClick: () => console.log("Navigate to services")
+						onClick: () => navigate({ to: '/tjanster' })
 					}
 				]}
 			/>
@@ -97,7 +98,7 @@ export default function LandingPage() {
 			<PageSection variant="feature" align="center">
 				<ImageText
 					image={{
-						src: "/assets/reach_hand_desktop.jpg",
+						src: "/assets/Kran_mot_himmelen_desktop.jpg",
 						alt: "Reach Management"
 					}}
 					title="Om Reach Management"
@@ -116,14 +117,13 @@ export default function LandingPage() {
 						Våra tjänster
 					</Typography>
 					<div style={{ 
-						width: 80, 
-						height: 2, 
-						backgroundColor: colors.primary,
-						borderRadius: "1px",
-						margin: '0 auto',
+						width: 200, 
+						height: 3, 
+						background: `linear-gradient(90deg, ${colors.primary} 0%, ${colors.accent} 100%)`,
+						borderRadius: "2px",
 						marginBottom: spacing[6]
 					}} />
-					<Typography variant="h5" color="secondary" style={{ maxWidth: 600, margin: '0 auto' }}>
+					<Typography variant="h5" color="secondary" style={{ maxWidth: 600, margin: '12px auto' }}>
 						Vi erbjuder kompletta lösningar för alla delar av byggprocessen
 					</Typography>
 				</div>
@@ -181,19 +181,20 @@ export default function LandingPage() {
 							variant="primary"
 							size="large"
 							style={{ display: 'flex', alignItems: 'center', gap: spacing[2] }}
+							onClick={() => navigate({ to: '/tjanster' })}
 						>
 							Se alla våra tjänster
 							<ArrowForward />
 						</Button>
-				</div>
+					</div>
 			</PageSection>
 
 			{/* Why Choose Us Section */}
 			<PageSection variant="feature" align="center">
 				<ImageText
 					image={{
-						src: "/titanic.jpg",
-						alt: "Titanic"
+						src: "/assets/lightbulb_in_hands_desktop.jpg",
+						alt: "Teamwork"
 					}}
 					title="Därför Reach Management"
 					content={[
@@ -211,14 +212,13 @@ export default function LandingPage() {
 						Våra konsulter
 					</Typography>
 					<div style={{ 
-						width: 80, 
-						height: 2, 
-						backgroundColor: colors.primary,
-						borderRadius: "1px",
-						margin: '0 auto',
+						width: 200, 
+						height: 3, 
+						background: `linear-gradient(90deg, ${colors.primary} 0%, ${colors.accent} 100%)`,
+						borderRadius: "2px",
 						marginBottom: spacing[6]
 					}} />
-					<Typography variant="h5" color="secondary" style={{ maxWidth: 600, margin: '0 auto' }}>
+					<Typography variant="h5" color="secondary" style={{ maxWidth: 600, margin: '12px auto' }}>
 						Erfarna experter som driver dina projekt framåt
 					</Typography>
 				</div>
@@ -242,12 +242,9 @@ export default function LandingPage() {
 							{ name: "ISO 9001 Lead Auditor", year: "2022", issuer: "DNV" },
 							{ name: "PMP Certification", year: "2021", issuer: "PMI" }
 						],
-						status: "available",
 						variant: "featured",
-						onContact: () => {
-							setShowContactDialog(true);
-						},
-						
+						email: "info@reachmanagement.se",
+						phone: "+46 70 108 10 22"
 					}]}
 				/>
 			</PageSection>
@@ -313,7 +310,7 @@ export default function LandingPage() {
 							gap: spacing[2]
 						}}
 						onClick={() => {
-							setShowContactDialog(true);
+							navigate({ to: '/tjanster' });
 						}}
 					>
 						Se våra tjänster
@@ -329,16 +326,15 @@ export default function LandingPage() {
 						Kontakta oss
 					</Typography>
 					<div style={{ 
-						width: 80, 
+						width: 200, 
 						height: 3, 
 						background: `linear-gradient(90deg, ${colors.primary} 0%, ${colors.accent} 100%)`,
 						borderRadius: "2px",
-						margin: '0 auto',
 						marginBottom: spacing[6]
 					}} />
 					<Typography variant="h5" color="secondary" style={{ 
 						maxWidth: 700, 
-						margin: '0 auto',
+						margin: '12px auto',
 						lineHeight: 1.6
 					}}>
 						Har du frågor eller vill diskutera ditt nästa projekt? Vi finns här

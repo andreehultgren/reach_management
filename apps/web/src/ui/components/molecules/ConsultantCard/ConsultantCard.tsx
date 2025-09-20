@@ -100,30 +100,6 @@ const ConsultantImage = styled.img`
   }
 `;
 
-const StatusBadge = styled.div<{ $status: 'available' | 'employed' | 'busy' | 'unavailable' }>`
-  position: absolute;
-  top: ${spacing[3]};
-  right: ${spacing[3]};
-  padding: ${spacing[1]} ${spacing[2]};
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  background: ${({ $status }) => {
-    switch ($status) {
-      case 'available': return colors.success;
-      case 'employed': return colors.warning;
-      case 'busy': return colors.error;
-      case 'unavailable': return colors.gray400;
-      default: return colors.success;
-    }
-  }};
-  color: ${colors.white};
-  z-index: 2;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-`;
-
 const Content = styled.div<{ $variant?: 'default' | 'featured' | 'minimal' }>`
   padding: ${({ $variant = 'default' }) => {
     switch ($variant) {
@@ -149,15 +125,6 @@ const ConsultantName = styled(Typography)`
   margin: 0;
   line-height: 1.3;
   flex: 1;
-`;
-
-const Experience = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${spacing[1]};
-  color: ${colors.textSecondary};
-  font-size: 0.875rem;
-  font-weight: 500;
 `;
 
 const Title = styled(Typography)`
@@ -246,8 +213,42 @@ const Actions = styled.div`
   border-top: 1px solid ${colors.gray200};
 `;
 
-const ContactButton = styled(Button)`
-  flex: 1;
+const ContactLinks = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${spacing[2]};
+  width: 100%;
+`;
+
+const ContactLink = styled.a`
+  display: flex;
+  align-items: center;
+  gap: ${spacing[2]};
+  padding: ${spacing[2]} ${spacing[3]};
+  background: ${colors.gray50};
+  border: 1px solid ${colors.gray200};
+  border-radius: 8px;
+  text-decoration: none;
+  color: ${colors.textPrimary};
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: ${colors.primaryLight};
+    border-color: ${colors.primary};
+    color: ${colors.primary};
+    transform: translateY(-1px);
+  }
+`;
+
+const ContactIcon = styled.div`
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
 `;
 
 const ViewProfileButton = styled(Button)`
@@ -259,16 +260,15 @@ export interface ConsultantCardProps {
   title: string;
   image: string;
   imageAlt?: string;
-  experience: string;
   skills: string[];
   certifications: Array<{
     name: string;
     year: string;
     issuer?: string;
   }>;
-  status: 'available' | 'employed' | 'busy' | 'unavailable';
   variant?: 'default' | 'featured' | 'minimal';
-  onContact?: () => void;
+  email?: string;
+  phone?: string;
   onViewProfile?: () => void;
   className?: string;
 }
@@ -278,12 +278,11 @@ export const ConsultantCard: React.FC<ConsultantCardProps> = ({
   title,
   image,
   imageAlt,
-  experience,
   skills,
   certifications,
-  status,
   variant = 'default',
-  onContact,
+  email,
+  phone,
   onViewProfile,
   className,
 }) => {
@@ -294,9 +293,6 @@ export const ConsultantCard: React.FC<ConsultantCardProps> = ({
           src={image}
           alt={imageAlt || name}
         />
-        <StatusBadge $status={status}>
-          {status}
-        </StatusBadge>
       </ImageContainer>
       
       <Content $variant={variant}>
@@ -309,10 +305,6 @@ export const ConsultantCard: React.FC<ConsultantCardProps> = ({
               {title}
             </Title>
           </div>
-          <Experience>
-            <span>⏱️</span>
-            <span>{experience}</span>
-          </Experience>
         </Header>
         
         {skills.length > 0 && (
@@ -361,17 +353,23 @@ export const ConsultantCard: React.FC<ConsultantCardProps> = ({
           </div>
         )}
         
-        {(onContact || onViewProfile) && (
+        {(email || phone || onViewProfile) && (
           <Actions>
-            {onContact && (
-              <ContactButton 
-                variant="primary" 
-                size="small" 
-                onClick={onContact}
-                disabled={status === 'unavailable'}
-              >
-                Contact
-              </ContactButton>
+            {(email || phone) && (
+              <ContactLinks>
+                {email && (
+                  <ContactLink href={`mailto:${email}`}>
+                    <ContactIcon>✉</ContactIcon>
+                    {email}
+                  </ContactLink>
+                )}
+                {phone && (
+                  <ContactLink href={`tel:${phone}`}>
+                    <ContactIcon>📞</ContactIcon>
+                    {phone}
+                  </ContactLink>
+                )}
+              </ContactLinks>
             )}
             {onViewProfile && (
               <ViewProfileButton 

@@ -125,9 +125,9 @@ export interface ConsultantData {
     year: string;
     issuer?: string;
   }>;
-  status: 'available' | 'employed' | 'busy' | 'unavailable';
   variant?: 'default' | 'featured' | 'minimal';
-  onContact?: () => void;
+  email?: string;
+  phone?: string;
   onViewProfile?: () => void;
 }
 
@@ -151,12 +151,11 @@ export const ConsultantScroller: React.FC<ConsultantScrollerProps> = ({
             title={consultant.title}
             image={consultant.image}
             imageAlt={consultant.imageAlt}
-            experience={consultant.experience}
             skills={consultant.skills}
             certifications={consultant.certifications}
-            status={consultant.status}
             variant={consultant.variant}
-            onContact={consultant.onContact}
+            email={consultant.email}
+            phone={consultant.phone}
             onViewProfile={consultant.onViewProfile}
           />
         </ConsultantItem>

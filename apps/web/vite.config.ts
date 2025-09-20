@@ -17,6 +17,10 @@ export default defineConfig({
     target: 'react',
     autoCodeSplitting: true
   }), react()],
+  server: {
+    allowedHosts: ['localhost', 'mike.hultan.com'],
+    host: true, // Allow connections from all hosts
+  },
   test: {
     projects: [{
       extends: true,

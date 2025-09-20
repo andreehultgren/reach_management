@@ -13,7 +13,7 @@ export const colors = {
   // Brand colors - White/Grey/Gold scheme
   primary: '#2C2C2C',          // Dark grey for primary
   primaryLight: '#F8F9FA',     // Light grey/white
-  accent: '#D6B861',           // Gold accent
+  accent: '#D9B774',           // Gold accent
   accentLight: '#FDF4E3',      // Light gold
   
   // Neutral grays - Scandinavian palette
