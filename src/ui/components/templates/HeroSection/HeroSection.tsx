@@ -167,12 +167,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       className={className}
     >
       {backgroundImage && (
-        <HeroBackgroundImage
-          src={backgroundImage}
-          alt=""
-          fetchPriority="high"
-          loading="eager"
-        />
+        <picture>
+          <source srcSet={backgroundImage.replace('.jpg', '.webp')} type="image/webp" />
+          <HeroBackgroundImage
+            src={backgroundImage}
+            alt=""
+            fetchPriority="high"
+            loading="eager"
+          />
+        </picture>
       )}
       <HeroOverlay />
       <HeroContent $maxWidth={maxWidth}>
