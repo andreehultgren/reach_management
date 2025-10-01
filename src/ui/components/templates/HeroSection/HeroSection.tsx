@@ -5,7 +5,6 @@ import { Typography } from '../../atoms/Typography';
 import { Button } from '../../atoms/Button';
 
 const HeroContainer = styled.div<{ 
-  $backgroundImage?: string;
   $height?: string;
   $overlay?: boolean;
   $notFullHeight?: boolean;
@@ -17,15 +16,7 @@ const HeroContainer = styled.div<{
   min-height: ${({ $height, $notFullHeight }) => 
     $notFullHeight ? '500px' : ($height || '100vh')
   };
-  background: ${({ $backgroundImage }) => 
-    $backgroundImage 
-      ? `linear-gradient(135deg, ${colors.primary}CC 0%, ${colors.primaryLight}99 100%), url(${$backgroundImage})`
-      : `linear-gradient(135deg, ${colors.primary} 0%, ${colors.primaryLight} 100%)`
-  };
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: linear-gradient(135deg, ${colors.primary} 0%, ${colors.primaryLight} 100%);
   color: ${colors.textOnDark};
   text-align: center;
   padding: ${spacing[12]} ${spacing[5]};
@@ -38,12 +29,8 @@ const HeroContainer = styled.div<{
     left: 0;
     right: 0;
     bottom: 0;
-    background: ${({ $backgroundImage }) => 
-      $backgroundImage 
-        ? `radial-gradient(circle at 30% 20%, ${colors.primary}4D 0%, transparent 50%), 
-           radial-gradient(circle at 70% 80%, ${colors.primaryLight}33 0%, transparent 50%)`
-        : 'none'
-    };
+    background: radial-gradient(circle at 30% 20%, ${colors.primary}4D 0%, transparent 50%), 
+                radial-gradient(circle at 70% 80%, ${colors.primaryLight}33 0%, transparent 50%);
     pointer-events: none;
   }
   
@@ -57,6 +44,27 @@ const HeroContainer = styled.div<{
     min-height: ${({ $height }) => $height || '70vh'};
     padding: ${spacing[6]} ${spacing[3]};
   }
+`;
+
+const HeroBackgroundImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+`;
+
+const HeroOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, ${colors.primary}CC 0%, ${colors.primaryLight}99 100%);
+  z-index: 1;
 `;
 
 const HeroContent = styled.div<{ $maxWidth?: string }>`
@@ -154,11 +162,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 }) => {
   return (
     <HeroContainer
-      $backgroundImage={backgroundImage}
       $height={height}
       $notFullHeight={notFullHeight}
       className={className}
     >
+      {backgroundImage && (
+        <HeroBackgroundImage
+          src={backgroundImage}
+          alt=""
+          fetchPriority="high"
+          loading="eager"
+        />
+      )}
+      <HeroOverlay />
       <HeroContent $maxWidth={maxWidth}>
         {subtitle && (
           <HeroSubtitle variant="overline" color="textOnDark">
