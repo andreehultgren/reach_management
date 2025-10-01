@@ -18,6 +18,24 @@ export default defineConfig({
     target: 'react',
     autoCodeSplitting: true
   }), react()],
+  build: {
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          router: ['@tanstack/react-router'],
+          ui: ['@mui/material', '@mui/icons-material', 'styled-components'],
+        },
+      },
+    },
+  },
   server: {
     allowedHosts: ['localhost', 'mike.hultan.com'],
     host: true, // Allow connections from all hosts
