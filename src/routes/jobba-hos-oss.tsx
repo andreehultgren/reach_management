@@ -59,7 +59,7 @@ export default function LandingPage() {
 			<HeroSection
 				title="Jobba hos oss"
 				subtitle="Bli en del av vårt team och hjälp oss att nå längre tillsammans"
-				backgroundImage="/stockholm.jpg"
+				backgroundImage="/stockholm_web.jpg"
 				notFullHeight
 			/>
 			

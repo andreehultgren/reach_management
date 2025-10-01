@@ -82,7 +82,7 @@ export default function LandingPage() {
 			<HeroSection
 				title="Vi når längre tillsammans"
 				subtitle="För framgångsrika bygg- och fastighetsprojekt"
-				backgroundImage="/stockholm.jpg"
+				backgroundImage="/stockholm_web.jpg"
 				actions={[
 					{
 						text: "Läs mer om våra tjänster",
