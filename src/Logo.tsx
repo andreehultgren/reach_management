@@ -15,7 +15,7 @@ interface IProps {
 export default function Logo({ size = 28 }: IProps) {
 	return (
 		<LogoWrapper>
-			<img src="/logo.png" alt="Logo" height={4 * size} />
+			<img src="/logo.webp" alt="Logo" height={4 * size} />
 		</LogoWrapper>
 	);
 }

@@ -99,7 +99,7 @@ export default function LandingPage() {
 			<PageSection variant="feature" align="center">
 				<ImageText
 					image={{
-						src: "/assets/Kran_mot_himmelen_desktop.jpg",
+						src: "/assets/Kran_mot_himmelen_desktop.webp",
 						alt: "Reach Management"
 					}}
 					title="Om Reach Management"
@@ -196,7 +196,7 @@ export default function LandingPage() {
 			<PageSection variant="feature" align="center">
 				<ImageText
 					image={{
-						src: "/assets/lightbulb_in_hands_desktop.jpg",
+						src: "/assets/lightbulb_in_hands_desktop.webp",
 						alt: "Teamwork"
 					}}
 					title="Därför Reach Management"
@@ -235,7 +235,7 @@ export default function LandingPage() {
 							"Byggledare",
 							"KA enligt PBL"
 						],
-						image: "/michael.jpg",
+						image: "/michael.webp",
 						experience: "10+ års erfarenhet",
 						certifications: [
 							{ name: "Kontrollansvarig enligt PBL", year: "2025", issuer: "RISE" }

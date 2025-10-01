@@ -66,7 +66,7 @@ export const CenterOrientation: Story = {
 export const SingleContent: Story = {
   args: {
     image: {
-      src: '/assets/michael.jpg',
+      src: '/michael.webp',
       alt: 'Michael Hultgren'
     },
     title: 'Våra konsulter',

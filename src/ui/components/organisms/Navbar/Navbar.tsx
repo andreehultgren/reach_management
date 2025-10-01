@@ -181,7 +181,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <NavbarContainer className={className}>
         <NavbarContent>
           <Logo as="a" href={logo.href}>
-            <LogoImage src="/logo.png" alt={logo.text} />
+            <LogoImage src="/logo.webp" alt={logo.text} />
           </Logo>
           
           <NavLinks>
