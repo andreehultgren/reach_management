@@ -17,9 +17,6 @@ const meta: Meta<typeof Footer> = {
     email: {
       control: { type: 'text' },
     },
-    links: {
-      control: { type: 'object' },
-    },
   },
 };
 

@@ -361,6 +361,13 @@ export default function LandingPage() {
 						<ArrowForward />
 					</Button>
 				</div>
+				{/* ContactUs dialog */}
+			{showContactDialog && (
+				<ContactUs 
+					triggerOpen={true}
+					onClose={() => setShowContactDialog(false)}
+				/>
+			)}
 			</PageSection>
 
 		</div>
