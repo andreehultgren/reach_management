@@ -51,38 +51,6 @@ const ValueIcon = styled.div`
 	color: ${COLORS.white};
 `;
 
-
-const BenefitsList = styled.div`
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-	gap: ${SPACING.md};
-	margin: ${SPACING.lg} 0;
-`;
-
-const BenefitItem = styled.div`
-	display: flex;
-	align-items: center;
-	gap: ${SPACING.sm};
-	padding: ${SPACING.sm};
-	background: ${COLORS.gray50};
-	border-radius: 8px;
-	border-left: 4px solid ${COLORS.accent};
-`;
-
-const CheckIcon = styled.div`
-	width: 20px;
-	height: 20px;
-	background: ${COLORS.accent};
-	border-radius: 50%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: ${COLORS.white};
-	font-size: 12px;
-	font-weight: bold;
-	flex-shrink: 0;
-`;
-
 export default function LandingPage() {
 	const [showContactDialog, setShowContactDialog] = React.useState(false);
 
@@ -167,64 +135,11 @@ export default function LandingPage() {
 				</div>
 			</PageSection>
 
-			{/* Benefits Section */}
-			<PageSection variant="default" align="center">
-				<div style={{ maxWidth: 1000, margin: '0 auto' }}>
-					<div style={{ textAlign: 'center', marginBottom: SPACING.xxl }}>
-						<Typography variant="h2" color="primary" style={{ marginBottom: SPACING.md }}>
-							Vad vi erbjuder
-						</Typography>
-						<Typography variant="body1" color="secondary" style={{ fontSize: '1.1rem', maxWidth: 600, margin: '0 auto' }}>
-							Hos oss får du mer än bara ett uppdrag. Du får en miljö där vi når längre tillsammans.
-						</Typography>
-					</div>
-					
-					<BenefitsList>
-						<BenefitItem>
-							<CheckIcon>✓</CheckIcon>
-							<Typography variant="body1" color="primary">
-								Konkurrenskraftig lön och förmåner
-							</Typography>
-						</BenefitItem>
-						<BenefitItem>
-							<CheckIcon>✓</CheckIcon>
-							<Typography variant="body1" color="primary">
-								Flexibla arbetstider och hemarbete
-							</Typography>
-						</BenefitItem>
-						<BenefitItem>
-							<CheckIcon>✓</CheckIcon>
-							<Typography variant="body1" color="primary">
-								Kontinuerlig utbildning och utveckling
-							</Typography>
-						</BenefitItem>
-						<BenefitItem>
-							<CheckIcon>✓</CheckIcon>
-							<Typography variant="body1" color="primary">
-								Moderna verktyg och tekniker
-							</Typography>
-						</BenefitItem>
-						<BenefitItem>
-							<CheckIcon>✓</CheckIcon>
-							<Typography variant="body1" color="primary">
-								Stark teamkänsla och samarbete
-							</Typography>
-						</BenefitItem>
-						<BenefitItem>
-							<CheckIcon>✓</CheckIcon>
-							<Typography variant="body1" color="primary">
-								Möjlighet att påverka och växa
-							</Typography>
-						</BenefitItem>
-					</BenefitsList>
-				</div>
-			</PageSection>
-
 			{/* CTA Section */}
 			<PageSection variant="cta" align="center">
 				<div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center' }}>
 					<Typography variant="h2" style={{ marginBottom: SPACING.md, color: 'white' }}>
-						Redo att börja?
+						Skicka en spontanansökan till oss
 					</Typography>
 					<Typography variant="h5" style={{ marginBottom: SPACING.xxl, color: 'white', opacity: 0.9 }}>
 						Är du intresserad av att arbeta med oss? Hör av dig och berätta mer om dig själv - vi är alltid öppna för nya samarbeten.
@@ -234,6 +149,30 @@ export default function LandingPage() {
 						size="large"
 						onClick={() => {
 							setShowContactDialog(true);
+						}}
+						style={{
+							background: 'transparent',
+							color: 'white',
+							border: '2px solid white',
+							padding: `${SPACING.lg} ${SPACING.xxl}`,
+							borderRadius: '1rem',
+							fontSize: '1.2rem',
+							fontWeight: 600,
+							display: 'flex',
+							alignItems: 'center',
+							justifyContent: 'center',
+							gap: SPACING.sm,
+							transition: 'all 0.2s',
+							margin: '0 auto',
+							width: 'fit-content'
+						}}
+						onMouseEnter={(e) => {
+							e.currentTarget.style.background = 'white';
+							e.currentTarget.style.color = COLORS.primary;
+						}}
+						onMouseLeave={(e) => {
+							e.currentTarget.style.background = 'transparent';
+							e.currentTarget.style.color = 'white';
 						}}
 					>
 						Skicka spontanansökan

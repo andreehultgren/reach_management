@@ -311,7 +311,7 @@ import { Footer } from '@/ui';
 
 <Footer
   companyName="Reach Management"
-  orgNumber="123456-7890"
+  orgNumber="559214-4520"
   email="info@reachmanagement.se"
   links={[
     { href: '/privacy', label: 'Privacy Policy' },

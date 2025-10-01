@@ -177,7 +177,7 @@ export default function Tjanster() {
 				</div>
 			</PageSection>
 
-			<PageSection variant="testimonial" align="center">
+			<PageSection variant="cta" align="center">
 				<div style={{ 
 					maxWidth: 800, 
 					margin: '0 auto',
@@ -185,14 +185,13 @@ export default function Tjanster() {
 					padding: '0 16px',
 					boxSizing: 'border-box'
 				}}>
-					<Typography variant="h3" color="primary" style={{ marginBottom: spacing[4] }}>
-						Hör av dig så når vi längre tillsammans
+					<Typography variant="h3" color="textOnDark" style={{ marginBottom: spacing[4] }}>
+						Tillsammans driver vi dina projekt framåt
 					</Typography>
-					<Typography variant="body1" color="secondary" style={{ marginBottom: spacing[6] }}>
-						Har du ett projekt på gång eller vill du veta mer om hur vi kan
-						hjälpa dig? Tveka inte att höra av dig.
+					<Typography variant="body1" color="textOnDark" style={{ marginBottom: spacing[6] }}>
+						Vi är här för att göra resan enklare, tydligare och tryggare - hör av dig så berättar vi mer.
 					</Typography>
-					<ContactUs />
+					<ContactUs whiteOutline={true} />
 				</div>
 			</PageSection>
 		</div>

@@ -55,15 +55,15 @@ const SERVICES = [
 	},
 	{
 		title: "Projekteringsledning", 
-		description: "Vi samordnar projekteringsarbetet för att säkerställa kvalitet och effektivitet, från koncept till byggstart, med kunden i centrum."
+		description: "Som projekteringsledare samordnar vi alla discipliner i projekteringsarbetet – från tidiga koncept till byggstart. Vi säkerställer kvalitet, struktur och effektivitet i leveranserna, och ser till att kundens mål och krav alltid står i centrum."
 	},
 	{
 		title: "Byggledning",
-		description: "På plats leder vi entreprenörerna och övervakar tidplan, ekonomi och säkerhet för att säkerställa ett framgångsrikt projekt."
+		description: "Som byggledare företräder vi beställaren och ser till att entreprenörerna följer avtal, tidsplan och ekonomi. Vi samordnar, kontrollerar och driver byggskedet så att projektet så att projektet genomförs på ett effektivt och kvalitativt sätt."
 	},
 	{
 		title: "Kontrollansvarig enligt PBL",
-		description: "Som certifierade kontrollansvariga enligt PBL säkerställer vi att lagkrav följs och att projektet godkänns av byggnadsnämnden."
+		description: "Som certifierade kontrollansvariga enligt PBL ser vi till att lagkrav följs, kontrollplanen hålls och att projektet kan godkännas av byggnadsnämnden."
 	}
 ] as const;
 
@@ -247,6 +247,52 @@ export default function LandingPage() {
 				/>
 			</PageSection>
 
+
+			{/* About Us Section */}
+			<PageSection variant="feature" align="center">
+				<div style={{ textAlign: 'center', marginBottom: spacing[8] }}>
+					<Typography variant="h2" color="primary" style={{ marginBottom: spacing[4] }}>
+						Lär känna oss bättre
+					</Typography>
+					<div style={{ 
+						width: 200, 
+						height: 3, 
+						background: `linear-gradient(90deg, ${colors.primary} 0%, ${colors.accent} 100%)`,
+						borderRadius: "2px",
+						marginBottom: spacing[6],
+						marginLeft: 0
+					}} />
+					<Typography variant="h5" color="secondary" style={{ 
+						maxWidth: 600, 
+						margin: '12px auto',
+						lineHeight: 1.6
+					}}>
+						Upptäck vår historia, våra värderingar och hur vi kan hjälpa dig att nå dina mål inom bygg- och fastighetsbranschen.
+					</Typography>
+				</div>
+				
+				<div style={{ textAlign: 'center' }}>
+					<Button
+						variant="primary"
+						size="large"
+						onClick={() => {window.location.href = '/om-oss'}}
+						style={{ 
+							fontSize: "1.2rem",
+							fontWeight: 600,
+							padding: `${spacing[4]} ${spacing[8]}`,
+							borderRadius: "1rem",
+							display: 'flex',
+							alignItems: 'center',
+							gap: spacing[2],
+							margin: '0 auto'
+						}}
+					>
+						Läs mer om oss
+						<ArrowForward />
+					</Button>
+				</div>
+			</PageSection>
+
 			{/* Call to Action Section */}
 			<PageSection variant="cta" align="center">
 				<div style={{ textAlign: 'center', marginBottom: spacing[8] }}>
@@ -317,58 +363,6 @@ export default function LandingPage() {
 				</div>
 			</PageSection>
 
-			{/* About Us Section */}
-			<PageSection variant="testimonial" align="center">
-				<div style={{ textAlign: 'center', marginBottom: spacing[8] }}>
-					<Typography variant="h2" color="primary" style={{ marginBottom: spacing[4] }}>
-						Lär känna oss bättre
-					</Typography>
-					<div style={{ 
-						width: 200, 
-						height: 3, 
-						background: `linear-gradient(90deg, ${colors.primary} 0%, ${colors.accent} 100%)`,
-						borderRadius: "2px",
-						marginBottom: spacing[6],
-						marginLeft: 0
-					}} />
-					<Typography variant="h5" color="secondary" style={{ 
-						maxWidth: 600, 
-						margin: '12px auto',
-						lineHeight: 1.6
-					}}>
-						Upptäck vår historia, våra värderingar och hur vi kan hjälpa dig att nå dina mål inom bygg- och fastighetsbranschen.
-					</Typography>
-				</div>
-				
-				<div style={{ textAlign: 'center' }}>
-					<Button
-						variant="primary"
-						size="large"
-						onClick={() => {window.location.href = '/om-oss'}}
-						style={{ 
-							fontSize: "1.2rem",
-							fontWeight: 600,
-							padding: `${spacing[4]} ${spacing[8]}`,
-							borderRadius: "1rem",
-							display: 'flex',
-							alignItems: 'center',
-							gap: spacing[2],
-							margin: '0 auto'
-						}}
-					>
-						Läs mer om oss
-						<ArrowForward />
-					</Button>
-				</div>
-			</PageSection>
-
-			{/* ContactUs dialog */}
-			{showContactDialog && (
-				<ContactUs 
-					triggerOpen={true}
-					onClose={() => setShowContactDialog(false)}
-				/>
-			)}
 		</div>
 	);
 }

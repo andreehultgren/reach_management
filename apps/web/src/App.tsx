@@ -47,13 +47,8 @@ function App() {
 				<TanStackRouterDevtools />
 				<Footer 
 					companyName="Reach Management"
-					orgNumber="123456-7890"
+					orgNumber="559214-4520"
 					email="info@reachmanagement.se"
-					links={[
-						{ text: "Integritetspolicy", href: "/privacy" },
-						{ text: "Användarvillkor", href: "/terms" },
-						{ text: "Cookies", href: "/cookies" }
-					]}
 				/>
 				{/* ContactUs dialog */}
 				{showContactDialog && (

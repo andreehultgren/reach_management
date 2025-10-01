@@ -1,26 +1,32 @@
 import React from "react";
-import { COLORS } from "../../constants";
+import { COLORS, SPACING } from "../../constants";
 import { styled } from "styled-components";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import Slide from "@mui/material/Slide";
 import type { TransitionProps } from "@mui/material/transitions";
 import { Typography } from "@mui/material";
+import { ArrowForward } from "@mui/icons-material";
 
-const StyledContact = styled.button`
-	background: ${COLORS.logoColorTwo};
-	color: #404040;
-	border: none;
+const StyledContact = styled.button<{ $whiteOutline?: boolean }>`
+	background: ${props => props.$whiteOutline ? 'transparent' : COLORS.logoColorTwo};
+	color: ${props => props.$whiteOutline ? COLORS.white : '#404040'};
+	border: ${props => props.$whiteOutline ? `2px solid ${COLORS.white}` : 'none'};
 	cursor: pointer;
-	padding: 0.5rem 1.5rem;
-	border-radius: 9999px;
-	font-size: 1.1rem;
+	padding: ${props => props.$whiteOutline ? `${SPACING.lg} ${SPACING.xxl}` : '0.5rem 1.5rem'};
+	border-radius: ${props => props.$whiteOutline ? '1rem' : '9999px'};
+	font-size: ${props => props.$whiteOutline ? '1.2rem' : '1.1rem'};
+	font-weight: ${props => props.$whiteOutline ? 600 : 'normal'};
 	width: fit-content;
 	margin: 0 auto;
 	transition: all 0.2s;
+	display: ${props => props.$whiteOutline ? 'flex' : 'block'};
+	align-items: ${props => props.$whiteOutline ? 'center' : 'normal'};
+	gap: ${props => props.$whiteOutline ? SPACING.sm : '0'};
+	
 	&:hover {
-		background: ${COLORS.logoColor};
-		color: white;
+		background: ${props => props.$whiteOutline ? COLORS.white : COLORS.logoColor};
+		color: ${props => props.$whiteOutline ? COLORS.primary : 'white'};
 	}
 `;
 
@@ -99,6 +105,7 @@ interface ContactUsProps {
 	popupRef?: React.Ref<HTMLDivElement>;
 	triggerOpen?: boolean;
 	onClose?: () => void;
+	whiteOutline?: boolean;
 }
 
 const ContactUs = React.forwardRef<HTMLButtonElement, ContactUsProps>(
@@ -120,8 +127,9 @@ const ContactUs = React.forwardRef<HTMLButtonElement, ContactUsProps>(
 		return (
 			<>
 				{!props.triggerOpen && (
-					<StyledContact ref={ref} onClick={() => setOpen(true)}>
+					<StyledContact ref={ref} $whiteOutline={props.whiteOutline} onClick={() => setOpen(true)}>
 						Kontakt
+						{props.whiteOutline && <ArrowForward />}
 					</StyledContact>
 				)}
 				<Dialog

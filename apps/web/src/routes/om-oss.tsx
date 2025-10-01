@@ -409,7 +409,7 @@ export default function LandingPage() {
 						Har du ett projekt på gång eller vill du veta mer om hur vi kan
 						hjälpa dig? Tveka inte att höra av dig.
 					</Typography>
-					<ContactUs  />
+					<ContactUs whiteOutline={true} />
 				</ContentContainer>
 			</PageSection>
 		</div>

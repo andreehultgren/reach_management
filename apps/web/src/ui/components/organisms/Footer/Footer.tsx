@@ -55,7 +55,6 @@ export interface FooterProps {
   companyName: string;
   orgNumber: string;
   email: string;
-  links?: FooterLink[];
   className?: string;
 }
 
@@ -63,7 +62,6 @@ export const Footer: React.FC<FooterProps> = ({
   companyName,
   orgNumber,
   email,
-  links = [],
   className,
 }) => {
   return (
@@ -80,27 +78,12 @@ export const Footer: React.FC<FooterProps> = ({
         </Typography>
         
         <Divider />
-        
         <FooterLink href={`mailto:${email}`}>
           <Typography variant="body2" color="textOnDark">
             {email}
           </Typography>
         </FooterLink>
         
-        {links.length > 0 && (
-          <>
-            <Divider />
-            <div style={{ display: 'flex', gap: spacing[4], flexWrap: 'wrap' }}>
-              {links.map((link) => (
-                <FooterLink key={link.href} href={link.href}>
-                  <Typography variant="body2" color="textOnDark">
-                    {link.text}
-                  </Typography>
-                </FooterLink>
-              ))}
-            </div>
-          </>
-        )}
       </FooterContent>
     </FooterContainer>
   );

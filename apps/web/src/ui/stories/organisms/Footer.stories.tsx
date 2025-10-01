@@ -39,11 +39,6 @@ export const WithLinks: Story = {
     companyName: 'Reach Management',
     orgNumber: '556677-8899',
     email: 'info@reachmanagement.se',
-    links: [
-      { text: 'Integritetspolicy', href: '/privacy' },
-      { text: 'Användarvillkor', href: '/terms' },
-      { text: 'Cookies', href: '/cookies' },
-    ],
   },
 };
 
@@ -60,10 +55,5 @@ export const Interactive: Story = {
     companyName: 'Interactive Company',
     orgNumber: '987654-3210',
     email: 'contact@interactive.se',
-    links: [
-      { text: 'Privacy Policy', href: '/privacy' },
-      { text: 'Terms of Service', href: '/terms' },
-      { text: 'Contact Us', href: '/contact' },
-    ],
   },
 };
