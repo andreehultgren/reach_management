@@ -48,6 +48,7 @@ function App() {
 				<Footer 
 					companyName="Reach Management"
 					orgNumber="559214-4520"
+					bankgiro="5085-1815"
 					email="info@reachmanagement.se"
 				/>
 				{/* ContactUs dialog */}

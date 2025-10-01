@@ -55,6 +55,7 @@ export interface FooterProps {
   companyName: string;
   orgNumber: string;
   email: string;
+  bankgiro: string;
   className?: string;
 }
 
@@ -62,6 +63,7 @@ export const Footer: React.FC<FooterProps> = ({
   companyName,
   orgNumber,
   email,
+  bankgiro,
   className,
 }) => {
   return (
@@ -81,6 +83,13 @@ export const Footer: React.FC<FooterProps> = ({
         <FooterLink href={`mailto:${email}`}>
           <Typography variant="body2" color="textOnDark">
             {email}
+          </Typography>
+        </FooterLink>
+
+        <Divider />
+        <FooterLink href={`https://www.bankgiro.se/bankgiro/${bankgiro}`}>
+          <Typography variant="body2" color="textOnDark">
+            BG: {bankgiro}
           </Typography>
         </FooterLink>
         
