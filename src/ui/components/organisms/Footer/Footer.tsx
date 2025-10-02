@@ -87,11 +87,11 @@ export const Footer: React.FC<FooterProps> = ({
         </FooterLink>
 
         <Divider />
-        <FooterLink href={`https://www.bankgiro.se/bankgiro/${bankgiro}`}>
-          <Typography variant="body2" color="textOnDark">
-            Bankgiro: {bankgiro}
-          </Typography>
-        </FooterLink>
+        
+        <Typography variant="body2" color="textOnDark">
+          Bankgiro: {bankgiro}
+        </Typography>
+      
         
       </FooterContent>
     </FooterContainer>
