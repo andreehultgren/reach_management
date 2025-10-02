@@ -70,5 +70,5 @@ export const COMPANY_INFO = {
   name: "Reach Management",
   email: "info@reachmanagement.se",
   orgNumber: "556677-8899",
-  website: "https://reach-management-ab.web.app",
+  website: "https://reachmanagement.se",
 } as const;
