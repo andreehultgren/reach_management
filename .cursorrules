@@ -156,11 +156,7 @@ const StyledComponent = styled.div<{ $isOpen: boolean; $variant?: 'primary' | 's
 - Smooth transitions and hover effects
 - Mobile hamburger menu with proper touch handling
 - Consistent spacing and typography
-
-### Firebase Integration
-- **Hosting**: Deploy to Firebase Hosting
-- **Configuration**: Use `firebase_config.ts` for Firebase setup
-- **Environment**: Production URL: `https://reach-management-ab.web.app`
+- **Environment**: Production URL: `https://reachmanagament.se`
 
 ### Development Workflow
 - **Dev Server**: `npm run dev` (Vite dev server)
