@@ -68,7 +68,7 @@ export default function LandingPage() {
 				<div style={{ maxWidth: 1200, margin: '0 auto' }}>
 					<ImageText
 						orientation="right"
-						image={{ src: "/assets/3_pers_med_vy_desktop.jpg", alt: "Team at work" }}
+						image={{ src: "/assets/3_pers_med_vy_desktop.webp", alt: "Team at work" }}
 						title="Våra värderingar"
 						content="Vi bygger ett bolag som växer långsiktigt och söker alltid efter människor som delar våra värderingar - ärlighet, struktur, innovation och kundfokus. Hos oss får du mer än bara ett uppdrag. Du får en miljö där vi når längre tillsammans."
 					/>
